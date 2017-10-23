@@ -1,6 +1,9 @@
 package com.eduardoportfolio.eventmanagementsystem.models;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * Created by Eduardo on 23/10/17.
  */
@@ -11,19 +14,8 @@ public class User {
     private String userName;
     private String userEmail;
     private String userPassword;
-
-    public User() {
-    }
-
-    public User(String userName) {
-        this.userName = userName;
-    }
-
-    public User(String userName, String userEmail, String userPassword) {
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
-    }
+    private Collection<Event> userEvents = new ArrayList<>();
+    private Collection<Lecture> userLectures = new ArrayList<>();
 
     public Long getUserId() {
         return userId;
@@ -55,5 +47,21 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public Collection<Event> getUserEvents() {
+        return userEvents;
+    }
+
+    public void setUserEvents(Collection<Event> userEvents) {
+        this.userEvents = userEvents;
+    }
+
+    public Collection<Lecture> getUserLectures() {
+        return userLectures;
+    }
+
+    public void setUserLectures(Collection<Lecture> userLectures) {
+        this.userLectures = userLectures;
     }
 }
