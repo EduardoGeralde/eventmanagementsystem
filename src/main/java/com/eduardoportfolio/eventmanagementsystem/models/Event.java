@@ -14,7 +14,7 @@ import java.util.Collection;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventId;
     private String eventName;
     @Lob
@@ -24,7 +24,8 @@ public class Event {
     private String eventLogoPath;
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
-    private Boolean eventActive;
+    @Column(columnDefinition = "boolean default true", nullable = false)
+    private boolean eventActive;
     @ManyToOne
     private User eventUser;
     @OneToMany (mappedBy = "lectureEvent")
