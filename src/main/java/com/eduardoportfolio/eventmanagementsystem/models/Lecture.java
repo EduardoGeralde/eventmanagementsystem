@@ -59,4 +59,30 @@ public class Lecture {
     public void setLectureEvent(Event lectureEvent) {
         this.lectureEvent = lectureEvent;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lecture lecture = (Lecture) o;
+
+        return lectureId != null ? lectureId.equals(lecture.lectureId) : lecture.lectureId == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return lectureId != null ? lectureId.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Lecture{" +
+                "lectureId=" + lectureId +
+                ", lectureUser=" + lectureUser +
+                ", lectureTitle='" + lectureTitle + '\'' +
+                ", lectureDescription='" + lectureDescription + '\'' +
+                ", lectureEvent=" + lectureEvent +
+                '}';
+    }
 }
