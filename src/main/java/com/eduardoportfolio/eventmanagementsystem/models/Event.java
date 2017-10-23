@@ -1,5 +1,8 @@
 package com.eduardoportfolio.eventmanagementsystem.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -7,17 +10,24 @@ import java.util.Collection;
 /**
  * Created by Eduardo on 23/10/17.
  */
+@Entity
 public class Event {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long eventId;
     private String eventName;
-    private String description;
+    @Lob
+    private String eventDescription;
     private String eventSite;
     private String eventLocal;
     private String eventLogoPath;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
     private Boolean eventActive;
-    private User user;
+    @ManyToOne
+    private User eventUser;
+    @OneToMany (mappedBy = "lectureEvent")
     private Collection<Lecture> eventLectures = new ArrayList<>();
 
     public Long getEventId() {
@@ -36,12 +46,12 @@ public class Event {
         this.eventName = eventName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getEventDescription() {
+        return eventDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
     }
 
     public String getEventSite() {
@@ -84,12 +94,12 @@ public class Event {
         this.eventActive = eventActive;
     }
 
-    public User getUser() {
-        return user;
+    public User getEventUser() {
+        return eventUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setEventUser(User eventUser) {
+        this.eventUser = eventUser;
     }
 
     public Collection<Lecture> getEventLectures() {
