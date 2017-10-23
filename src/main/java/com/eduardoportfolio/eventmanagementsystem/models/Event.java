@@ -110,4 +110,34 @@ public class Event {
     public void setEventLectures(Collection<Lecture> eventLectures) {
         this.eventLectures = eventLectures;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Event event = (Event) o;
+
+        return eventId != null ? eventId.equals(event.eventId) : event.eventId == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return eventId != null ? eventId.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", eventName='" + eventName + '\'' +
+                ", eventDescription='" + eventDescription + '\'' +
+                ", eventSite='" + eventSite + '\'' +
+                ", eventLocal='" + eventLocal + '\'' +
+                ", eventLogoPath='" + eventLogoPath + '\'' +
+                ", eventDate=" + eventDate +
+                ", eventActive=" + eventActive +
+                ", eventUser=" + eventUser +
+                '}';
+    }
 }
