@@ -1,16 +1,24 @@
 package com.eduardoportfolio.eventmanagementsystem.models;
 
 
+import javax.persistence.*;
+
 /**
  * Created by Eduardo on 23/10/17.
  */
+@Entity
 public class Lecture {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lectureId;
-    private User userLecturer;
+    @ManyToOne
+    private User lectureUser;
     private String lectureTitle;
+    @Lob
     private String lectureDescription;
-    private Event event;
+    @ManyToOne
+    private Event lectureEvent;
 
     public Long getLectureId() {
         return lectureId;
@@ -20,12 +28,12 @@ public class Lecture {
         this.lectureId = lectureId;
     }
 
-    public User getUserLecturer() {
-        return userLecturer;
+    public User getLectureUser() {
+        return lectureUser;
     }
 
-    public void setUserLecturer(User userLecturer) {
-        this.userLecturer = userLecturer;
+    public void setLectureUser(User lectureUser) {
+        this.lectureUser = lectureUser;
     }
 
     public String getLectureTitle() {
@@ -44,11 +52,11 @@ public class Lecture {
         this.lectureDescription = lectureDescription;
     }
 
-    public Event getEvent() {
-        return event;
+    public Event getLectureEvent() {
+        return lectureEvent;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setLectureEvent(Event lectureEvent) {
+        this.lectureEvent = lectureEvent;
     }
 }
