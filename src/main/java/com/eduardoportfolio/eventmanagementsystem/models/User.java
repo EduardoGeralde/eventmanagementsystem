@@ -1,20 +1,25 @@
 package com.eduardoportfolio.eventmanagementsystem.models;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Created by Eduardo on 23/10/17.
  */
-
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
     private String userName;
     private String userEmail;
     private String userPassword;
+    @OneToMany (mappedBy = "eventUser")
     private Collection<Event> userEvents = new ArrayList<>();
+    @OneToMany (mappedBy = "lectureUser")
     private Collection<Lecture> userLectures = new ArrayList<>();
 
     public Long getUserId() {
