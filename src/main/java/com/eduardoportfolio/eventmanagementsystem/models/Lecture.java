@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Lecture {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lectureId;
     @ManyToOne
     private User lectureUser;
