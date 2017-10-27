@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>eventmanagementsystem</name>
-	<description>System to manage the lectures, created and choosed by the users, to fill the event grade</description>
+	<description>System to manage the lectures, created by the users, to fill the event grade</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
