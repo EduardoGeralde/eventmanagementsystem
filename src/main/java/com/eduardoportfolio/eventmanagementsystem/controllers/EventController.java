@@ -37,5 +37,4 @@ public class EventController {
         eventDAO.save(event);
         return "redirect:listEvents";
     }
-
 }
