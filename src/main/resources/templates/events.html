@@ -10,6 +10,8 @@
     <script src="../static/js/jquery-3.2.1.min.js"
             th:src="@{/js/jquery-3.2.1.min.js}"></script>
 
+    <link th:href="@{/css/sticky-footer-navbar.css}" rel="stylesheet" media="screen"/>
+
     <link th:href="@{/css/custom.css}" rel="stylesheet" media="screen"/>
 
     <style th:remove="all">
@@ -143,6 +145,8 @@
     </tr>
 
 </table>
+
+<div class="container" th:replace="fragments/footer::footer"></div>
 
 </body>
 </html>
