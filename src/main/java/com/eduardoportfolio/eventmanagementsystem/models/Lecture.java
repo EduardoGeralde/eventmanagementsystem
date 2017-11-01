@@ -2,6 +2,7 @@ package com.eduardoportfolio.eventmanagementsystem.models;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * Created by Eduardo on 23/10/17.
@@ -13,9 +14,12 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lectureId;
     @ManyToOne
+    @NotEmpty
     private User lectureUser;
+    @NotEmpty
     private String lectureTitle;
     @Lob
+    @NotEmpty
     private String lectureDescription;
     @ManyToOne
     private Event lectureEvent;
