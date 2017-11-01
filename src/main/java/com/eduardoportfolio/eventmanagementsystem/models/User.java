@@ -2,6 +2,8 @@ package com.eduardoportfolio.eventmanagementsystem.models;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -14,8 +16,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+    @NotEmpty
     private String userName;
+    @NotEmpty
+    @Email
     private String userEmail;
+    @NotEmpty
     private String userPassword;
     @OneToMany (mappedBy = "eventUser")
     private Collection<Event> userEvents = new ArrayList<>();
