@@ -3,6 +3,7 @@ package com.eduardoportfolio.eventmanagementsystem.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -16,12 +17,16 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventId;
+    @NotEmpty
     private String eventName;
     @Lob
+    @NotEmpty
     private String eventDescription;
     private String eventSite;
+    @NotEmpty
     private String eventLocal;
     private String eventLogoPath;
+    @NotEmpty
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
     @Column(columnDefinition = "boolean default true", nullable = false)
