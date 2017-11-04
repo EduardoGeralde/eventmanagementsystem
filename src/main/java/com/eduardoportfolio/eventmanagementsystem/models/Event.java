@@ -26,7 +26,6 @@ public class Event {
     @NotEmpty
     private String eventLocal;
     private String eventLogoPath;
-    @NotEmpty
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
     @Column(columnDefinition = "boolean default true", nullable = false)

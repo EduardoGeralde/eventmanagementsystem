@@ -14,7 +14,6 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lectureId;
     @ManyToOne
-    @NotEmpty
     private User lectureUser;
     @NotEmpty
     private String lectureTitle;
