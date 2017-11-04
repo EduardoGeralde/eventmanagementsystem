@@ -17,12 +17,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     @NotEmpty
-    private String userName;
+    private String username;
     @NotEmpty
     @Email
     private String userEmail;
     @NotEmpty
-    private String userPassword;
+    private String password;
+
     @OneToMany (mappedBy = "eventUser")
     private Collection<Event> userEvents = new ArrayList<>();
     @OneToMany (mappedBy = "lectureUser")
@@ -36,12 +37,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUserEmail() {
@@ -52,12 +53,12 @@ public class User {
         this.userEmail = userEmail;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Collection<Event> getUserEvents() {
@@ -95,7 +96,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 '}';
     }
