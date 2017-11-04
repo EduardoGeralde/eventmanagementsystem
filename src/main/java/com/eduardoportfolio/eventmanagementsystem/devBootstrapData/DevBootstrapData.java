@@ -36,13 +36,13 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
     private void initData(){
 
         User user1 = new User();
-        user1.setUserName("Eduardo Geralde Neto");
+        user1.setUsername("Eduardo Geralde Neto");
         user1.setUserEmail("eduardo_geralde@hotmail.com");
         user1.setUserPassword("password1");
         userDAO.save(user1);
 
         User user2 = new User();
-        user2.setUserName("James Gosling");
+        user2.setUsername("James Gosling");
         user2.setUserEmail("james_gosling@java.sun");
         user2.setUserPassword("password2");
         userDAO.save(user2);
