@@ -1,5 +1,6 @@
 package com.eduardoportfolio.eventmanagementsystem.controllers;
 
+import com.eduardoportfolio.eventmanagementsystem.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,9 +14,9 @@ import javax.validation.Valid;
 @Controller
 public class LoginController {
 
-    RequestMapping("/login")
+    @RequestMapping("/login")
     public String showLoginForm(Model model){
-        model.addAttribute("loginCommand", new LoginCommand());
+        model.addAttribute("loginCommand", new User());
 
         return "loginForm";
     }
@@ -25,7 +26,7 @@ public class LoginController {
         return "logout-success";
     }
 
-    public String doLogin(@Valid LoginComand loginComand, BindingResult bindingResult){
+    public String doLogin(@Valid User user, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "loginForm";
