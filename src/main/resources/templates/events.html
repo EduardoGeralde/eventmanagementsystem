@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title th:text="#{page.title}">Events and Lectures</title>
 
     <link href="../static/css/bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
@@ -139,12 +139,16 @@
     <tbody>
         <tr th:each="event:${events}">
             <td th:text="${event.eventId}">1</td>
-            <td th:text="${event.eventName}">Ellie Morgan</td>
-            <td th:text="${event.eventDescription}">Testing the description of the events</td>
+            <td th:text="${event.eventName}">Even name</td>
+            <td th:text="${event.eventDescription}">Testing the event description</td>
             <td th:text="${event.eventLocal}">Testing the event local</td>
             <td th:datetime="${event.eventDate}">30/10/2017</td>
             <td th:text="${event.eventLogoPath}">testing/logo/path</td>
             <td th:text="${event.eventSite}">www.testingsite.com</td>
+            <tr th:each="lecture:${events.eventLectures}">
+                <td th:text="${lecture.lectureTitle}">Lecture Title</td>
+                <td th:text="${lecture.lectureDescription}">Testing the lecture description</td>
+            </tr>
         </tr>
     </tbody>
 
