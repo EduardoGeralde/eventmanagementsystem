@@ -18,7 +18,7 @@ public class LectureController {
         this.lectureDAO = lectureDAO;
     }
 
-    @RequestMapping("/lectureForm")
+    @RequestMapping("/form/lecture")
     public String form(){
         return "registration/lectureForm";
     }
