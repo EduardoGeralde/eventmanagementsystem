@@ -21,20 +21,20 @@ public class EventController {
         this.eventDAO = eventDAO;
     }
 
-    @RequestMapping(value = "/eventForm")
+    @RequestMapping(value = "/form/event", method = RequestMethod.GET)
     public String form(){
         return "registration/eventForm";
     }
 
-    @RequestMapping(value = "/listEvents", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/events", method = RequestMethod.GET)
     public String listEvents(Model model){
         model.addAttribute("events", eventDAO.findAll());
         return "events";
     }
 
-    @RequestMapping (value = "/saveEvent", method = RequestMethod.POST)
+    @RequestMapping (value = "/register/event", method = RequestMethod.POST)
     public String saveEvent(Event event){
         eventDAO.save(event);
-        return "redirect:listEvents";
+        return "redirect:/list/events";
     }
 }
