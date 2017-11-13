@@ -1,17 +1,15 @@
 package com.eduardoportfolio.eventmanagementsystem.devBootstrapData;
 
 import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
-import com.eduardoportfolio.eventmanagementsystem.daos.LectureDAO;
 import com.eduardoportfolio.eventmanagementsystem.daos.UserDAO;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import com.eduardoportfolio.eventmanagementsystem.models.Lecture;
 import com.eduardoportfolio.eventmanagementsystem.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import java.util.Calendar;
+import java.util.*;
 
 /**
  * Created by Eduardo on 23/10/17.
@@ -20,13 +18,10 @@ import java.util.Calendar;
 public class DevBootstrapData implements ApplicationListener<ContextRefreshedEvent> {
 
     EventDAO eventDAO;
-    LectureDAO lectureDAO;
     UserDAO userDAO;
 
-    @Autowired
-    public DevBootstrapData(EventDAO eventDAO, LectureDAO lectureDAO, UserDAO userDAO) {
+    public DevBootstrapData(EventDAO eventDAO, UserDAO userDAO) {
         this.eventDAO = eventDAO;
-        this.lectureDAO = lectureDAO;
         this.userDAO = userDAO;
     }
 
@@ -37,18 +32,46 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
 
     private void initData(){
 
-        User user1 = new User();
-        user1.setUsername("Eduardo Geralde Neto");
-        user1.setUserEmail("eduardo_geralde@hotmail.com");
-        user1.setPassword("password1");
-        userDAO.save(user1);
+        //get Users added from data.sql
+        Optional<User> userOptional1 = userDAO.findById(new Long(1));
+        if(!userOptional1.isPresent()){
+            throw new RuntimeException("Expected User Not Found");
+        }
 
-        User user2 = new User();
-        user2.setUsername("James Gosling");
-        user2.setUserEmail("james_gosling@java.sun");
-        user2.setPassword("password2");
-        userDAO.save(user2);
+        Optional<User> userOptional2 = userDAO.findById(new Long(2));
+        if(!userOptional2.isPresent()){
+            throw new RuntimeException("Expected User Not Found");
+        }
 
+        User user1 = userOptional1.get();
+        User user2 = userOptional2.get();
+
+        //Creating Lectures
+        Lecture lecture1 = new Lecture();
+        lecture1.setLectureTitle("Java APIs");
+        lecture1.setLectureDescription("Explanation and hands on in some of the most important Java APIs ");
+
+        Lecture lecture2 = new Lecture();
+        lecture2.setLectureTitle("Java and the WEB");
+        lecture2.setLectureDescription("First web concepts using Java language and platform");
+
+        Lecture lecture3 = new Lecture();
+        lecture3.setLectureTitle("Science behind the data");
+        lecture3.setLectureDescription("Show the concepts and understanding about data and its powerful");
+
+        Lecture lecture4 = new Lecture();
+        lecture4.setLectureTitle("Knowing data, knowing the hidden world");
+        lecture4.setLectureDescription("How we can get data, clean data, and construct strategic based on it");
+
+        Lecture lecture5 = new Lecture();
+        lecture5.setLectureTitle("Data Warehouse for BI in Industries");
+        lecture5.setLectureDescription("BI for a long term memory in industries application");
+
+        Lecture lecture6 = new Lecture();
+        lecture6.setLectureTitle("BI for client satisfactions");
+        lecture6.setLectureDescription("What improve, transforming data in a realistic oprations");
+
+        //Creating Events
         Event event1 = new Event();
         event1.setEventName("MeetUp Java EE");
         event1.setEventLocal("Anhembi Centre");
@@ -57,6 +80,12 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
         event1.setEventLogoPath("/users/resources/javaee.png");
         event1.setEventSite("www.javaee.com");
         event1.setEventUser(user1);
+        lecture1.setLectureEvent(event1);
+        lecture2.setLectureEvent(event1);
+        List<Lecture> lectureList1 = new ArrayList<>();
+        lectureList1.add(lecture1);
+        lectureList1.add(lecture2);
+        event1.setEventLectures(lectureList1);
         eventDAO.save(event1);
 
         Event event2 = new Event();
@@ -67,6 +96,12 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
         event2.setEventLogoPath("/users/resources/datascience.png");
         event2.setEventSite("www.datascience.com");
         event2.setEventUser(user2);
+        lecture3.setLectureEvent(event2);
+        lecture4.setLectureEvent(event2);
+        List<Lecture> lectureList2 = new ArrayList<>();
+        lectureList2.add(lecture3);
+        lectureList2.add(lecture4);
+        event2.setEventLectures(lectureList2);
         eventDAO.save(event2);
 
         Event event3 = new Event();
@@ -77,48 +112,12 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
         event3.setEventLogoPath("/users/resources/databi.png");
         event3.setEventSite("www.datawarehouse.com");
         event3.setEventUser(user2);
-        eventDAO.save(event3);
-
-        Lecture lecture1 = new Lecture();
-        lecture1.setLectureTitle("Java APIs");
-        lecture1.setLectureDescription("Explanation and hands on in some of the most important Java APIs ");
-        lecture1.setLectureEvent(event1);
-        lecture1.setLectureUser(user1);
-        lectureDAO.save(lecture1);
-
-        Lecture lecture2 = new Lecture();
-        lecture2.setLectureTitle("Java and the WEB");
-        lecture2.setLectureDescription("First web concepts using Java language and platform");
-        lecture2.setLectureEvent(event1);
-        lecture2.setLectureUser(user2);
-        lectureDAO.save(lecture2);
-
-        Lecture lecture3 = new Lecture();
-        lecture3.setLectureTitle("Science behind the data");
-        lecture3.setLectureDescription("Show the concepts and understanding about data and its powerful");
-        lecture3.setLectureEvent(event2);
-        lecture3.setLectureUser(user1);
-        lectureDAO.save(lecture3);
-
-        Lecture lecture4 = new Lecture();
-        lecture4.setLectureTitle("Knowing data, knowing the hidden world");
-        lecture4.setLectureDescription("How we can get data, clean data, and construct strategic based on it");
-        lecture4.setLectureEvent(event2);
-        lecture4.setLectureUser(user2);
-        lectureDAO.save(lecture4);
-
-        Lecture lecture5 = new Lecture();
-        lecture5.setLectureTitle("Data Warehouse for BI in Industries");
-        lecture5.setLectureDescription("BI for a long term memory in industries application");
         lecture5.setLectureEvent(event3);
-        lecture5.setLectureUser(user1);
-        lectureDAO.save(lecture5);
-
-        Lecture lecture6 = new Lecture();
-        lecture6.setLectureTitle("BI for client satisfactions");
-        lecture6.setLectureDescription("What improve, transforming data in a realistic oprations");
         lecture6.setLectureEvent(event3);
-        lecture6.setLectureUser(user2);
-        lectureDAO.save(lecture6);
+        List<Lecture> lectureList3 = new ArrayList<>();
+        lectureList3.add(lecture5);
+        lectureList3.add(lecture6);
+        event3.setEventLectures(lectureList3);
+        eventDAO.save(event3);
     }
 }
