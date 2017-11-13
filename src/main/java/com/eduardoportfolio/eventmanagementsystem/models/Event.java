@@ -26,12 +26,11 @@ public class Event {
     private String eventLogoPath;
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
-    @Column(columnDefinition = "boolean default true", nullable = false)
-    private boolean eventActive;
+    private boolean eventClosed;
     @ManyToOne
     private User eventUser;
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "lectureEvent")
-    private Set<Lecture> eventLectures = new HashSet<>();
+    private List<Lecture> eventLectures = new ArrayList<>();
 
     public Long getEventId() {
         return eventId;
@@ -90,11 +89,11 @@ public class Event {
     }
 
     public Boolean getEventActive() {
-        return eventActive;
+        return eventClosed;
     }
 
     public void setEventActive(Boolean eventActive) {
-        this.eventActive = eventActive;
+        this.eventClosed = eventActive;
     }
 
     public User getEventUser() {
@@ -106,18 +105,26 @@ public class Event {
     }
 
     public boolean isEventActive() {
-        return eventActive;
+        return eventClosed;
     }
 
     public void setEventActive(boolean eventActive) {
-        this.eventActive = eventActive;
+        this.eventClosed = eventActive;
     }
 
-    public Set<Lecture> getEventLectures() {
+    public boolean isEventClosed() {
+        return eventClosed;
+    }
+
+    public void setEventClosed(boolean eventClosed) {
+        this.eventClosed = eventClosed;
+    }
+
+    public List<Lecture> getEventLectures() {
         return eventLectures;
     }
 
-    public void setEventLectures(Set<Lecture> eventLectures) {
+    public void setEventLectures(List<Lecture> eventLectures) {
         this.eventLectures = eventLectures;
     }
 
@@ -146,7 +153,7 @@ public class Event {
                 ", eventLocal='" + eventLocal + '\'' +
                 ", eventLogoPath='" + eventLogoPath + '\'' +
                 ", eventDate=" + eventDate +
-                ", eventActive=" + eventActive +
+                ", eventActive=" + eventClosed +
                 ", eventUser=" + eventUser +
                 '}';
     }
