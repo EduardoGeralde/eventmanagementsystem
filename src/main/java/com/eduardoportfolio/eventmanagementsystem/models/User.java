@@ -10,6 +10,7 @@ import java.util.*;
  * Created by Eduardo on 23/10/17.
  */
 @Entity
+@Table(name="USER_DETAIL")
 public class User {
 
     @Id
@@ -24,9 +25,8 @@ public class User {
     private String password;
 
     @OneToMany (mappedBy = "eventUser")
-    private Set<Event> userEvents = new HashSet<>();
-    @OneToMany (mappedBy = "lectureUser")
-    private Set<Lecture> userLectures = new HashSet<>();
+    private List<Event> userEvents = new ArrayList<>();
+
 
     public Long getUserId() {
         return userId;
@@ -60,20 +60,12 @@ public class User {
         this.password = password;
     }
 
-    public Set<Event> getUserEvents() {
+    public List<Event> getUserEvents() {
         return userEvents;
     }
 
-    public void setUserEvents(Set<Event> userEvents) {
+    public void setUserEvents(List<Event> userEvents) {
         this.userEvents = userEvents;
-    }
-
-    public Set<Lecture> getUserLectures() {
-        return userLectures;
-    }
-
-    public void setUserLectures(Set<Lecture> userLectures) {
-        this.userLectures = userLectures;
     }
 
     @Override
