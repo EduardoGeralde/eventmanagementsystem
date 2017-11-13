@@ -6,6 +6,7 @@ import com.eduardoportfolio.eventmanagementsystem.daos.UserDAO;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import com.eduardoportfolio.eventmanagementsystem.models.Lecture;
 import com.eduardoportfolio.eventmanagementsystem.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,7 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
     LectureDAO lectureDAO;
     UserDAO userDAO;
 
+    @Autowired
     public DevBootstrapData(EventDAO eventDAO, LectureDAO lectureDAO, UserDAO userDAO) {
         this.eventDAO = eventDAO;
         this.lectureDAO = lectureDAO;
