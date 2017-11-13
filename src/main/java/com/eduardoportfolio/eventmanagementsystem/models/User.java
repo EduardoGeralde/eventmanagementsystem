@@ -4,8 +4,7 @@ package com.eduardoportfolio.eventmanagementsystem.models;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 /**
  * Created by Eduardo on 23/10/17.
@@ -25,9 +24,9 @@ public class User {
     private String password;
 
     @OneToMany (mappedBy = "eventUser")
-    private Collection<Event> userEvents = new ArrayList<>();
+    private Set<Event> userEvents = new HashSet<>();
     @OneToMany (mappedBy = "lectureUser")
-    private Collection<Lecture> userLectures = new ArrayList<>();
+    private Set<Lecture> userLectures = new HashSet<>();
 
     public Long getUserId() {
         return userId;
@@ -61,19 +60,19 @@ public class User {
         this.password = password;
     }
 
-    public Collection<Event> getUserEvents() {
+    public Set<Event> getUserEvents() {
         return userEvents;
     }
 
-    public void setUserEvents(Collection<Event> userEvents) {
+    public void setUserEvents(Set<Event> userEvents) {
         this.userEvents = userEvents;
     }
 
-    public Collection<Lecture> getUserLectures() {
+    public Set<Lecture> getUserLectures() {
         return userLectures;
     }
 
-    public void setUserLectures(Collection<Lecture> userLectures) {
+    public void setUserLectures(Set<Lecture> userLectures) {
         this.userLectures = userLectures;
     }
 
