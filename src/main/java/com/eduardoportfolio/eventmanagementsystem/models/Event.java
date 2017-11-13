@@ -4,9 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
+import java.util.*;
 
 /**
  * Created by Eduardo on 23/10/17.
@@ -32,8 +30,8 @@ public class Event {
     private boolean eventActive;
     @ManyToOne
     private User eventUser;
-    @OneToMany (mappedBy = "lectureEvent")
-    private Collection<Lecture> eventLectures = new ArrayList<>();
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "lectureEvent")
+    private Set<Lecture> eventLectures = new HashSet<>();
 
     public Long getEventId() {
         return eventId;
@@ -107,11 +105,19 @@ public class Event {
         this.eventUser = eventUser;
     }
 
-    public Collection<Lecture> getEventLectures() {
+    public boolean isEventActive() {
+        return eventActive;
+    }
+
+    public void setEventActive(boolean eventActive) {
+        this.eventActive = eventActive;
+    }
+
+    public Set<Lecture> getEventLectures() {
         return eventLectures;
     }
 
-    public void setEventLectures(Collection<Lecture> eventLectures) {
+    public void setEventLectures(Set<Lecture> eventLectures) {
         this.eventLectures = eventLectures;
     }
 
