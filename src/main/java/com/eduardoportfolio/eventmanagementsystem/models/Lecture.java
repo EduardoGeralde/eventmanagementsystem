@@ -13,8 +13,6 @@ public class Lecture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lectureId;
-    @ManyToOne
-    private User lectureUser;
     @NotEmpty
     private String lectureTitle;
     @Lob
@@ -29,14 +27,6 @@ public class Lecture {
 
     public void setLectureId(Long lectureId) {
         this.lectureId = lectureId;
-    }
-
-    public User getLectureUser() {
-        return lectureUser;
-    }
-
-    public void setLectureUser(User lectureUser) {
-        this.lectureUser = lectureUser;
     }
 
     public String getLectureTitle() {
@@ -82,7 +72,6 @@ public class Lecture {
     public String toString() {
         return "Lecture{" +
                 "lectureId=" + lectureId +
-                ", lectureUser=" + lectureUser +
                 ", lectureTitle='" + lectureTitle + '\'' +
                 ", lectureDescription='" + lectureDescription + '\'' +
                 ", lectureEvent=" + lectureEvent +
