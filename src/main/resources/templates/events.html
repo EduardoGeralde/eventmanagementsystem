@@ -145,10 +145,10 @@
             <td th:datetime="${event.eventDate}">30/10/2017</td>
             <td th:text="${event.eventLogoPath}">testing/logo/path</td>
             <td th:text="${event.eventSite}">www.testingsite.com</td>
-            <tr th:each="lecture:${events.eventLectures}">
-                <td th:text="${lecture.lectureTitle}">Lecture Title</td>
-                <td th:text="${lecture.lectureDescription}">Testing the lecture description</td>
-            </tr>
+                <tr th:each="lecture:${event.eventLectures}">
+                    <td th:text="${lecture.lectureTitle}">Lecture Title</td>
+                    <td th:text="${lecture.lectureDescription}">Testing the lecture description</td>
+                </tr>
         </tr>
     </tbody>
 
