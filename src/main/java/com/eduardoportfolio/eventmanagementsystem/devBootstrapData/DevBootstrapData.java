@@ -33,12 +33,12 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
     private void initData(){
 
         //get Users added from data.sql
-        Optional<User> userOptional1 = userDAO.findById(new Long(1));
+        Optional<User> userOptional1 = userDAO.findById(1L);
         if(!userOptional1.isPresent()){
             throw new RuntimeException("Expected User Not Found");
         }
 
-        Optional<User> userOptional2 = userDAO.findById(new Long(2));
+        Optional<User> userOptional2 = userDAO.findById(2L);
         if(!userOptional2.isPresent()){
             throw new RuntimeException("Expected User Not Found");
         }
