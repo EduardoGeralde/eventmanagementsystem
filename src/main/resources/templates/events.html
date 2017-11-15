@@ -118,13 +118,17 @@
 <body>
 
 <div class="jumbotron" th:replace="fragments/header::jumbotron">
-    <div class="container">
+    <div class="container-fluid">
         <h1 th:text="#{banner.text}">Events and Lectures</h1>
         <p class="lead" th:text="#{banner.tagline}">Join us, and make your choices !</p>
     </div>
 </div>
-<table class="table-bordered table-striped table" >
-    <thead>
+<div class="panel-heading">
+    <h1>Events Open</h1>
+</div>
+<div class="table-responsive" th:if="${not #lists.isEmpty(events)}">
+<table class="table table-hover" >
+    <thead class="thead-inverse">
     <tr>
         <th th:text="#{event.column.id}">Event ID</th>
         <th th:text="#{event.column.name}">Event Name</th>
@@ -145,12 +149,11 @@
             <td th:datetime="${event.eventDate}">30/10/2017</td>
             <td th:text="${event.eventLogoPath}">testing/logo/path</td>
             <td th:text="${event.eventSite}">www.testingsite.com</td>
-
         </tr>
     </tbody>
 
 </table>
-
+</div>
 <div class="container" th:replace="fragments/footer::footer"></div>
 
 </body>
