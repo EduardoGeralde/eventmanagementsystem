@@ -11,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
  */
 @Data
 @Entity
+@Table(name="LECTURE_DETAIL")
 public class Lecture {
 
     @Id
