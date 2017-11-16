@@ -128,8 +128,8 @@
 
 <div class="jumbotron" th:replace="fragments/header::jumbotron">
     <div class="container-fluid">
-        <h1 th:text="#{banner.text}">Events and Lectures</h1>
-        <p class="lead" th:text="#{banner.tagline}">Join us, and make your choices !</p>
+        <h1>Events and Lectures</h1>
+        <p>Join us, and make your choices !</p>
     </div>
 </div>
 <div class="panel-heading">
@@ -160,7 +160,7 @@
             <td th:datetime="${event.eventDate}">30/10/2017</td>
             <td th:text="${event.eventLogoPath}">testing/logo/path</td>
             <td th:text="${event.eventSite}">www.testingsite.com</td>
-            <td><a href="#" th:href="@{'event/show/'+ ${event.eventId}}">Event Details</a></td>
+            <td><a href="#" th:href="@{'event/'+ ${event.eventId}}">Event Details</a></td>
         </tr>
     </tbody>
 
