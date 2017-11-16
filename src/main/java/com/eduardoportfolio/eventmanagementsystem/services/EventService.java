@@ -10,4 +10,8 @@ import java.util.List;
 public interface EventService {
 
     List<Event> getEvents();
+
+    void saveEvent(Event event);
+
+    Event getEventById(Long id);
 }
