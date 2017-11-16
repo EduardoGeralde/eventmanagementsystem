@@ -9,11 +9,11 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by Eduardo on 15/11/17.
@@ -34,7 +34,7 @@ public class EventServiceImplTest {
     }
 
     @Test
-    public void getEvents() throws Exception {
+    public void getEventsTest() throws Exception {
 
         Event event = new Event();
         List<Event> eventList = new ArrayList<>();
@@ -46,6 +46,21 @@ public class EventServiceImplTest {
 
         assertEquals(events.size(), 1);
         verify(eventDAO, times(1)).findAll();
+    }
+
+    @Test
+    public void getEventByIdTest() throws Exception{
+        Event event = new Event();
+        event.setEventId(1L);
+        Optional<Event> eventOptional = Optional.of(event);
+
+        when(eventDAO.findById(anyLong())).thenReturn(eventOptional);
+
+        Event eventReturned = eventService.getEventById(1L);
+
+        assertNotNull("Null Event Returned",eventReturned);
+        verify(eventDAO, times(1)).findById(anyLong());
+        verify(eventDAO, never()).findAll();
     }
 
 }
