@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Eduardo on 15/11/17.
@@ -27,5 +28,22 @@ public class EventServiceImpl implements EventService{
         List<Event> eventList = new ArrayList<>();
         eventDAO.findAll().iterator().forEachRemaining(eventList::add);
         return eventList;
+    }
+
+    @Override
+    public void saveEvent(Event event) {
+        log.debug("EventServiceImpl saveEvent");
+        eventDAO.save(event);
+    }
+
+    @Override
+    public Event getEventById(Long id) {
+        log.debug("EventServiceImpl getEventById");
+        Optional<Event> eventOptional = eventDAO.findById(id);
+
+        if(!eventOptional.isPresent()){
+            throw new RuntimeException("Event Not Found");
+        }
+        return eventOptional.get();
     }
 }
