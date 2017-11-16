@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,22 +27,22 @@ public class EventController {
     }
 
     @RequestMapping(value = "/eventForm", method = RequestMethod.GET)
-    public String form(){
-        log.debug("Getting event form");
+    public String eventForm(){
+        log.debug("EventController eventForm");
         return "registration/eventForm";
-    }
-
-    @RequestMapping(value = "/eventList", method = RequestMethod.GET)
-    public String listEvents(Model model){
-        log.debug("Getting event list");
-        model.addAttribute("events", eventService.getEvents());
-        return "events";
     }
 
     @RequestMapping (value = "/saveEvent", method = RequestMethod.POST)
     public String saveEvent(Event event){
-        log.debug("Saving event");
-        //eventDAO.save(event);
-        return "redirect:/eventList";
+        log.debug("EventController saveEvent");
+        eventService.saveEvent(event);
+        return "redirect:/index";
+    }
+
+    @RequestMapping(value = "/event/{id}")
+    public String getEventById(@PathVariable("id")Long id, Model model){
+        log.debug("EventController getEventById");
+        model.addAttribute("event", eventService.getEventById(id));
+        return "event/showEvent";
     }
 }
