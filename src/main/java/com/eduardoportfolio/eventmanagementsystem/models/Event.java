@@ -13,6 +13,7 @@ import java.util.*;
 
 @Data
 @Entity
+@Table(name = "EVENT_DETAIL")
 public class Event {
 
     @Id
