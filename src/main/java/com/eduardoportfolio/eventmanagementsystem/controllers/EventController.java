@@ -26,13 +26,13 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @RequestMapping(value = "/eventForm", method = RequestMethod.GET)
+    @RequestMapping(value = "/event/form", method = RequestMethod.GET)
     public String eventForm(){
         log.debug("EventController eventForm");
-        return "registration/eventForm";
+        return "event/eventForm";
     }
 
-    @RequestMapping (value = "/saveEvent", method = RequestMethod.POST)
+    @RequestMapping (value = "/event/save", method = RequestMethod.POST)
     public String saveEvent(Event event){
         log.debug("EventController saveEvent");
         eventService.saveEvent(event);
