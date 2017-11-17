@@ -132,6 +132,7 @@
     </div>
 </div>
 <div class="panel-heading col-md-offset-5">
+    <!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
     <h1 th:text="${event.eventName}">Event Name</h1>
 </div>
 
@@ -145,17 +146,18 @@
                     </div>
                     <div class="panel-body">
                             <div class="row">
+                                <!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
                                 <div class="col-md-2">
                                     <h4>Event Id:</h4>
                                 </div>
                                 <div class="col-md-2" style="margin-top: 10px">
-                                    <p>2</p>
+                                    <p th:text="${event.getEventId()}">2</p>
                                 </div>
                                 <div class="col-md-2">
                                     <h4>Event Local:</h4>
                                 </div>
                                 <div class="col-md-2" style="margin-top: 10px">
-                                    <p>Exposition Park</p>
+                                    <p th:text="${event.getEventLocal()}">Exposition Park</p>
                                 </div>
                                 <div class="col-md-2">
                                     <h4>Event Creator:</h4>
@@ -193,7 +195,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                        <p th:text="${event.eventDescription}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
                                             dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                             nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
                                             quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
@@ -212,11 +214,23 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <ul>
-                                        <li>1 Cup of milk</li>
-                                        <li>1 Teaspoon of chocolate</li>
-                                        <li>1 Teaspoon of Sugar</li>
-                                    </ul>
+                                    <table class="table table-hover">
+                                        <thead class="thead-inverse">
+                                            <tr>
+                                                <th th:text="#{lecture.column.id}">Lecture ID</th>
+                                                <th th:text="#{lecture.column.title}">Lecture Title</th>
+                                                <th th:text="#{lecture.column.details}">Lecture Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="lecture : ${event.eventLectures}">
+                                                <!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
+                                                <td th:text="${lecture.lectureId}">3</td>
+                                                <td th:text="${lecture.lectureTitle}">Starting Programming</td>
+                                                <td><a th:href="@{'/lecture/'+ ${lecture.lectureId}}">Lecture Details</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

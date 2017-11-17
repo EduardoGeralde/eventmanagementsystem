@@ -128,43 +128,43 @@
 
 <div class="jumbotron" th:replace="fragments/header::jumbotron">
     <div class="container-fluid">
-        <h1>Events and Lectures</h1>
-        <p>Join us, and make your choices !</p>
+        <h1>Event Management System</h1>
+        <p>Make your own events, easy and free !</p>
     </div>
 </div>
 <div class="panel-heading">
-    <h1>Events Open</h1>
+    <h1 class="col-md-offset-5" th:text="#{page.title}">Events Open</h1>
 </div>
 <div class="table-responsive" th:if="${not #lists.isEmpty(events)}">
-<table class="table table-hover" >
-    <thead class="thead-inverse">
-    <tr>
-        <th th:text="#{event.column.id}">Event ID</th>
-        <th th:text="#{event.column.name}">Event Name</th>
-        <th th:text="#{event.column.description}">Event Description</th>
-        <th th:text="#{event.column.local}">Event Local</th>
-        <th th:text="#{event.column.date}">Event Date</th>
-        <th th:text="#{event.column.logo}">Event Logo</th>
-        <th th:text="#{event.column.site}">Event Site</th>
-        <th th:text="#{event.column.details}">Event Details</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
-        <tr th:each="event:${events}">
-            <td th:text="${event.eventId}">1</td>
-            <td th:text="${event.eventName}">Even name</td>
-            <td th:text="${event.eventDescription}">Testing the event description</td>
-            <td th:text="${event.eventLocal}">Testing the event local</td>
-            <td th:datetime="${event.eventDate}">30/10/2017</td>
-            <td th:text="${event.eventLogoPath}">testing/logo/path</td>
-            <td th:text="${event.eventSite}">www.testingsite.com</td>
-            <td><a href="#" th:href="@{'event/'+ ${event.eventId}}">Event Details</a></td>
-        </tr>
-    </tbody>
-
-</table>
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="pannel-group">
+                    <div class="panel panel-primary">
+                        <table class="table table-hover" >
+                             <thead class="thead-inverse">
+                                <tr>
+                                    <th th:text="#{event.column.id}">Event ID</th>
+                                    <th th:text="#{event.column.name}">Event Name</th>
+                                    <th th:text="#{event.column.date}">Event Date</th>
+                                    <th th:text="#{event.column.details}">Event Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
+                                <tr th:each="event:${events}">
+                                    <td th:text="${event.eventId}">1</td>
+                                    <td th:text="${event.eventName}">Even name</td>
+                                    <td th:datetime="${event.eventDate}">30/10/2017</td>
+                                    <td><a th:href="@{'event/'+ ${event.eventId}}">Event Details</a></td>
+                                </tr>
+                            </tbody>
+                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container" th:replace="fragments/footer::footer"></div>
 
