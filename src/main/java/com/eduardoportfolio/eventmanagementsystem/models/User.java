@@ -28,6 +28,6 @@ public class User {
     @NotEmpty
     private String password;
 
-    @OneToMany (mappedBy = "eventUser")
+    @OneToMany (mappedBy = "eventUser", cascade = CascadeType.ALL)
     private List<Event> userEvents = new ArrayList<>();
 }
