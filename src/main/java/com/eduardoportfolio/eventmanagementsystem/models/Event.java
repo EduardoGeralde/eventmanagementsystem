@@ -30,7 +30,7 @@ public class Event {
     private String eventLogoPath;
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
-    private Boolean eventClosed = false;
+    private Boolean eventClosed;
     @ManyToOne
     private User eventUser;
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "lectureEvent")
