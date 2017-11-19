@@ -20,5 +20,6 @@ public class UserCommand {
     private String userName;
     private String userEmail;
     private String password;
-    private List<Event> events = new ArrayList<>();
+    private List<EventCommand> events = new ArrayList<>();
+    private List<LectureCommand> lectures = new ArrayList<>();
 }
