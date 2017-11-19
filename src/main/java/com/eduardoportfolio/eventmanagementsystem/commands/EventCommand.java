@@ -1,7 +1,6 @@
 package com.eduardoportfolio.eventmanagementsystem.commands;
 
 import com.eduardoportfolio.eventmanagementsystem.models.Lecture;
-import com.eduardoportfolio.eventmanagementsystem.models.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +24,5 @@ public class EventCommand {
     private String eventLogoPath;
     private Calendar eventDate;
     private Boolean eventClosed;
-    private User eventUser;
-    private List<Lecture> eventLectures;
+    private List<LectureCommand> eventLectures;
 }
