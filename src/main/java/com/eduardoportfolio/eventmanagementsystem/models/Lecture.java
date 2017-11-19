@@ -17,6 +17,8 @@ public class Lecture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lectureId;
+    @ManyToOne
+    private User lecturer;
     @NotEmpty
     private String lectureTitle;
     @Lob
