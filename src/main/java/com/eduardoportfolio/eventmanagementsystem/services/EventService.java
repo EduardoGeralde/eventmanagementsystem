@@ -1,5 +1,6 @@
 package com.eduardoportfolio.eventmanagementsystem.services;
 
+import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface EventService {
 
     List<Event> getEvents();
 
-    void saveEvent(Event event);
-
     Event getEventById(Long id);
+
+    EventCommand saveEventCommand(EventCommand eventCommand);
 }
