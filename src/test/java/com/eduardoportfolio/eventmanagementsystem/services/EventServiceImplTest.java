@@ -1,5 +1,7 @@
 package com.eduardoportfolio.eventmanagementsystem.services;
 
+import com.eduardoportfolio.eventmanagementsystem.converters.EventCommandToEvent;
+import com.eduardoportfolio.eventmanagementsystem.converters.EventToEventCommand;
 import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import org.junit.Before;
@@ -25,12 +27,17 @@ public class EventServiceImplTest {
     @Mock
     EventDAO eventDAO;
 
+    @Mock
+    EventToEventCommand eventToEventCommand;
+
+    @Mock
+    EventCommandToEvent eventCommandToEvent;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        eventService = new EventServiceImpl(eventDAO);
-
+        eventService = new EventServiceImpl(eventToEventCommand, eventCommandToEvent, eventDAO);
     }
 
     @Test
