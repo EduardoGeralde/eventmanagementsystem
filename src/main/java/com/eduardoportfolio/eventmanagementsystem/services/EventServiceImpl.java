@@ -1,9 +1,13 @@
 package com.eduardoportfolio.eventmanagementsystem.services;
 
+import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
+import com.eduardoportfolio.eventmanagementsystem.converters.EventCommandToEvent;
+import com.eduardoportfolio.eventmanagementsystem.converters.EventToEventCommand;
 import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +20,14 @@ import java.util.Optional;
 @Service
 public class EventServiceImpl implements EventService{
 
+    private final EventToEventCommand eventToEventCommand;
+    private final EventCommandToEvent eventCommandToEvent;
     private final EventDAO eventDAO;
 
-    public EventServiceImpl(EventDAO eventDAO) {
+    public EventServiceImpl(EventToEventCommand eventToEventCommand,
+                            EventCommandToEvent eventCommandToEvent, EventDAO eventDAO) {
+        this.eventToEventCommand = eventToEventCommand;
+        this.eventCommandToEvent = eventCommandToEvent;
         this.eventDAO = eventDAO;
     }
 
@@ -31,12 +40,6 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public void saveEvent(Event event) {
-        log.debug("EventServiceImpl saveEvent");
-        eventDAO.save(event);
-    }
-
-    @Override
     public Event getEventById(Long id) {
         log.debug("EventServiceImpl getEventById");
         Optional<Event> eventOptional = eventDAO.findById(id);
@@ -45,5 +48,14 @@ public class EventServiceImpl implements EventService{
             throw new RuntimeException("Event Not Found");
         }
         return eventOptional.get();
+    }
+
+    @Transactional
+    @Override
+    public EventCommand saveEventCommand(EventCommand eventCommand) {
+        Event detachedEvent = eventCommandToEvent.convert(eventCommand);
+        Event savedEvent = eventDAO.save(detachedEvent);
+        log.debug("Saved EventID: "+savedEvent.getEventId());
+        return eventToEventCommand.convert(savedEvent);
     }
 }
