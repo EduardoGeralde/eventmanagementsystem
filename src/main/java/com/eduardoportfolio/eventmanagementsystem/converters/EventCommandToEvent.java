@@ -23,7 +23,11 @@ public class EventCommandToEvent implements Converter<EventCommand, Event>{
     @Nullable
     @Override
     public Event convert(EventCommand eventCommand) {
-        final Event event = new Event();
+        if(eventCommand == null){
+            return null;
+        }
+
+        Event event = new Event();
         event.setEventId(eventCommand.getEventId());
         event.setEventName(eventCommand.getEventName());
         event.setEventDescription(eventCommand.getEvenDescription());

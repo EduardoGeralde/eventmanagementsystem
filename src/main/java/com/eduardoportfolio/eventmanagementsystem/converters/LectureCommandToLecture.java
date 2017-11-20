@@ -21,7 +21,7 @@ public class LectureCommandToLecture implements Converter<LectureCommand, Lectur
             return null;
         }
 
-        final Lecture lecture = new Lecture();
+        Lecture lecture = new Lecture();
         lecture.setLectureId(lectureCommand.getLectureId());
         lecture.setLectureTitle(lectureCommand.getLectureTitle());
         lecture.setLectureDescription(lectureCommand.getLectureDescription());

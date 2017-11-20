@@ -27,7 +27,7 @@ public class EventToEventCommand implements Converter<Event, EventCommand> {
             return null;
         }
 
-        final EventCommand eventCommand = new EventCommand();
+        EventCommand eventCommand = new EventCommand();
         eventCommand.setEventId(event.getEventId());
         eventCommand.setEventName(event.getEventName());
         eventCommand.setEvenDescription(event.getEventDescription());

@@ -30,7 +30,7 @@ public class UserToUserCommand implements Converter<User, UserCommand> {
             return null;
         }
 
-        final UserCommand userCommand = new UserCommand();
+        UserCommand userCommand = new UserCommand();
         userCommand.setUserId(user.getUserId());
         userCommand.setUserName(user.getUsername());
         userCommand.setPassword(user.getPassword());
