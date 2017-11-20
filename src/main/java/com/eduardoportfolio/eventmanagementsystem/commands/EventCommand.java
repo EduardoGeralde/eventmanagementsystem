@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -24,5 +25,5 @@ public class EventCommand {
     private String eventLogoPath;
     private Calendar eventDate;
     private Boolean eventClosed;
-    private List<LectureCommand> eventLectures;
+    private List<LectureCommand> eventLectures = new ArrayList<>();
 }

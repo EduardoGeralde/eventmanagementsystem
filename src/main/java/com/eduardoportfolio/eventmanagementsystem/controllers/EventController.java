@@ -32,13 +32,6 @@ public class EventController {
         return "event/eventForm";
     }
 
-    @RequestMapping (value = "/event/save", method = RequestMethod.POST)
-    public String saveEvent(Event event){
-        log.debug("EventController saveEvent");
-        eventService.saveEvent(event);
-        return "redirect:/index";
-    }
-
     @RequestMapping(value = "/event/{id}")
     public String getEventById(@PathVariable("id")Long id, Model model){
         log.debug("EventController getEventById");
