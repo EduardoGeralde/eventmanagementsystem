@@ -35,4 +35,5 @@ public class Event {
     private User eventUser;
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "lectureEvent")
     private List<Lecture> eventLectures = new ArrayList<>();
+
 }
