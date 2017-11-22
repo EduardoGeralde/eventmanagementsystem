@@ -125,6 +125,7 @@
     </style>
 </head>
 <body>
+<!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
 <div class="jumbotron" th:replace="fragments/header::jumbotron">
     <div class="container-fluid">
         <h1>Event Management System</h1>
@@ -132,7 +133,6 @@
     </div>
 </div>
 <div class="panel-heading col-md-offset-5">
-    <!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
     <h1 th:text="${event.eventName}">Event Name</h1>
 </div>
 
@@ -146,18 +146,17 @@
                     </div>
                     <div class="panel-body">
                             <div class="row">
-                                <!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
                                 <div class="col-md-2">
                                     <h4>Event Id:</h4>
                                 </div>
                                 <div class="col-md-2" style="margin-top: 10px">
-                                    <p th:text="${event.getEventId()}">2</p>
+                                    <p th:text="${event.eventId}">2</p>
                                 </div>
                                 <div class="col-md-2">
                                     <h4>Event Local:</h4>
                                 </div>
                                 <div class="col-md-2" style="margin-top: 10px">
-                                    <p th:text="${event.getEventLocal()}">Exposition Park</p>
+                                    <p th:text="${event.eventLocal}">Exposition Park</p>
                                 </div>
                                 <div class="col-md-2">
                                     <h4>Event Creator:</h4>
@@ -171,19 +170,19 @@
                                     <h4>Event Name:</h4>
                                 </div>
                                 <div class="col-md-2" style="margin-top: 10px">
-                                    <p>Java EE MeetUp</p>
+                                    <p th:text="${event.eventName}">Java EE MeetUp</p>
                                 </div>
                                 <div class="col-md-2">
                                     <h4>Event Date:</h4>
                                 </div>
                                 <div class="col-md-2" style="margin-top: 10px">
-                                    <p>10/10/2018</p>
+                                    <p th:datetime="${event.eventDate}">10/10/2018</p>
                                 </div>
                                 <div class="col-md-2">
                                     <h4>Event Site:</h4>
                                 </div>
                                 <div class="col-md-2"style="margin-top: 10px">
-                                    <a>www.eventsite.com</a>
+                                    <a th:text="${event.eventSite}">www.eventsite.com</a>
                                 </div>
                                 </div>
                             </div>
@@ -240,8 +239,6 @@
         </div>
     </div>
 </div>
-
 <div class="container" th:replace="fragments/footer::footer"></div>
-
 </body>
 </html>
