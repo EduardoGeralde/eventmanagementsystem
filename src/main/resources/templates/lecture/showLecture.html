@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -124,6 +124,16 @@
     </style>
 </head>
 <body>
+<div class="jumbotron" th:replace="fragments/header::jumbotron">
+    <div class="container-fluid">
+        <h1>Event Management System</h1>
+        <p>Make your own events, easy and free !</p>
+    </div>
+</div>
 
+
+
+
+<div class="container" th:replace="fragments/footer::footer"></div>
 </body>
 </html>
