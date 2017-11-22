@@ -20,11 +20,21 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
+<div class="jumbotron" th:replace="fragments/header::jumbotron">
+    <div class="container-fluid">
+        <h1>Event Management System</h1>
+        <p>Make your own events, easy and free !</p>
+    </div>
+</div>
 <div class="container-fluid" style="margin-top: 20px" >
     <div class="row">
 
     </div>
 </div>
 
+
+
+
+<div class="container" th:replace="fragments/footer::footer"></div>
 </body>
 </html>
