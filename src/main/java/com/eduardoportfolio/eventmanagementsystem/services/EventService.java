@@ -17,4 +17,6 @@ public interface EventService {
     EventCommand saveEventCommand(EventCommand eventCommand);
 
     EventCommand findCommandById (Long id);
+
+    void deleteById(Long id);
 }
