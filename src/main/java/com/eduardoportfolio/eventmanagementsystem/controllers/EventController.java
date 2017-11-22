@@ -5,7 +5,6 @@ import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import com.eduardoportfolio.eventmanagementsystem.services.EventService;
 import com.eduardoportfolio.eventmanagementsystem.services.EventServiceImpl;
-import lombok.Lombok;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,7 +58,7 @@ public class EventController {
     }
 
     @GetMapping
-    @RequestMapping(value="/event/{id}/delete")
+    @RequestMapping(value = "/event/{id}/delete")
     public String deleteById(@PathVariable("id")Long id){
         log.debug("Deleting Event ID: " + id);
 
