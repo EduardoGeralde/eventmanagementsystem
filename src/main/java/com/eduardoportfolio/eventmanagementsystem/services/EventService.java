@@ -15,4 +15,6 @@ public interface EventService {
     Event getEventById(Long id);
 
     EventCommand saveEventCommand(EventCommand eventCommand);
+
+    EventCommand findCommandById (Long id);
 }
