@@ -43,34 +43,28 @@ public class EventServiceImplTest {
     @Test
     public void getEventsTest() throws Exception {
 
-        //given
         Event event = new Event();
         List<Event> eventList = new ArrayList<>();
         eventList.add(event);
 
         when(eventService.getEvents()).thenReturn(eventList);
 
-        //when
         List<Event> events = eventService.getEvents();
 
-        //then
         assertEquals(events.size(), 1);
         verify(eventDAO, times(1)).findAll();
     }
 
     @Test
     public void getEventByIdTest() throws Exception{
-        //given
         Event event = new Event();
         event.setEventId(1L);
         Optional<Event> eventOptional = Optional.of(event);
 
         when(eventDAO.findById(anyLong())).thenReturn(eventOptional);
 
-        //when
         Event eventReturned = eventService.getEventById(1L);
 
-        //then
         assertNotNull("Null Event Returned",eventReturned);
         verify(eventDAO, times(1)).findById(anyLong());
         verify(eventDAO, never()).findAll();
@@ -79,14 +73,15 @@ public class EventServiceImplTest {
     @Test
     public void testDeleteById() throws Exception {
         //given
-        Long idToDelete = 2L;
+        Long idToDelete = 1L;
 
         //when
         eventService.deleteById(idToDelete);
 
-        //no 'when()', since method has void return type
+        //no 'when()' , since method has void return
 
         //then
         verify(eventDAO, times(1)).deleteById(anyLong());
     }
+
 }
