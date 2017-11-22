@@ -30,7 +30,7 @@ public class EventCommandToEvent implements Converter<EventCommand, Event>{
         Event event = new Event();
         event.setEventId(eventCommand.getEventId());
         event.setEventName(eventCommand.getEventName());
-        event.setEventDescription(eventCommand.getEvenDescription());
+        event.setEventDescription(eventCommand.getEventDescription());
         event.setEventLocal(eventCommand.getEventLocal());
         event.setEventDate(eventCommand.getEventDate());
         event.setEventSite(eventCommand.getEventSite());
