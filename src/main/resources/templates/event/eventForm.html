@@ -124,8 +124,79 @@
     </style>
 </head>
 <body>
-    <h1>Event Registration</h1>
-
-
+<!--/*@thymesVar id="event" type="com.eduardoportfolio.models.Event"*/-->
+<div class="jumbotron" th:replace="fragments/header::jumbotron">
+    <div class="container-fluid">
+        <h1>Event Management System</h1>
+        <p>Make your own events, easy and free !</p>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form th:object="${event}" th:action="@{/event/}">
+                <input type="hidden" th:field="*{eventId}">
+                <div class="pannel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">Event Information</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <label>Event Name:</label>
+                                    <input type="text" class="form-control" th:field="*{eventName}"/>
+                                </div>
+                                <div class="col-md-9 form-group">
+                                    <label>Event Description:</label>
+                                    <textarea class="form-control" rows="3" th:field="*{eventDescription}"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 form-group">
+                                    <label>Event Date:</label>
+                                    <input type="date" class="form-control" th:field="*{eventDate}"/>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Event Local:</label>
+                                    <input type="text" class="form-control" th:field="*{eventLocal}"/>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <label>Event Site:</label>
+                                    <input type="text" class="form-control" th:field="*{eventSite}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h1 class="panel-title">Lectures:</h1>
+                                </div>
+                                <div>
+                                    <a class="btn btn-default" href="#" role="button">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <ul th:each="lecture : ${event.eventLectures}">
+                                        <li th:remove="all">Introduction to Java EE</li>
+                                        <li th:remove="all">Data Science Skills</li>
+                                        <li th:text="${lecture.lectureTitle}">Data WareHouse  for BI</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container" th:replace="fragments/footer::footer"></div>
 </body>
 </html>
