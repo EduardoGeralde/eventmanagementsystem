@@ -46,11 +46,11 @@ public class EventServiceIT {
         EventCommand testEventCommand = eventToEventCommand.convert(testEvent);
 
         //when
-        testEventCommand.setEvenDescription(EVENT_DESCRIPTION);
+        testEventCommand.setEventDescription(EVENT_DESCRIPTION);
         EventCommand savedEvent = eventService.saveEventCommand(testEventCommand);
 
         //then
-        assertEquals(EVENT_DESCRIPTION, savedEvent.getEvenDescription());
+        assertEquals(EVENT_DESCRIPTION, savedEvent.getEventDescription());
         assertEquals(testEvent.getEventId(), savedEvent.getEventId());
         assertEquals(testEvent.getEventLectures().size(), savedEvent.getEventLectures().size());
     }
