@@ -148,8 +148,6 @@
                                     <th th:text="#{event.column.name}">Event Name</th>
                                     <th th:text="#{event.column.date}">Event Date</th>
                                     <th th:text="#{event.column.details}">Event Details</th>
-                                    <th th:text="#{event.column.update}">Update</th>
-                                    <th th:text="#{event.column.delete}">Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -159,7 +157,6 @@
                                     <td th:datetime="${event.eventDate}">30/10/2017</td>
                                     <td><a th:href="@{'event/'+ ${event.eventId} + '/show'}">Details</a></td>
                                     <td><a th:href="@{'event/' + ${event.eventId} + '/update'} ">Update</a></td>
-                                    <td><a th:href="@{'event/' + ${event.eventId} + '/delete'}">Delete</a></td>
                                 </tr>
                             </tbody>
                          </table>

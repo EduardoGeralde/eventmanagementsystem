@@ -64,10 +64,4 @@ public class EventServiceImpl implements EventService{
     public EventCommand findCommandById(Long id) {
         return eventToEventCommand.convert(getEventById(id));
     }
-
-    @Override
-    public void deleteById(Long id) {
-        log.debug("EventServiceImpl deleteById");
-        eventDAO.deleteById(id);
-    }
 }

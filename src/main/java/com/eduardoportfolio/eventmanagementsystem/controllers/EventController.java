@@ -5,7 +5,6 @@ import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import com.eduardoportfolio.eventmanagementsystem.services.EventService;
 import com.eduardoportfolio.eventmanagementsystem.services.EventServiceImpl;
-import lombok.Lombok;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,6 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping
     @RequestMapping(value = "/event/form", method = RequestMethod.GET)
     public String eventForm(Model model){
         log.debug("EventController eventForm");
@@ -34,7 +32,6 @@ public class EventController {
         return "event/eventForm";
     }
 
-    @GetMapping
     @RequestMapping(value = "/event/{id}/show")
     public String getEventById(@PathVariable("id")Long id, Model model){
         log.debug("EventController getEventById");
@@ -42,7 +39,6 @@ public class EventController {
         return "event/showEvent";
     }
 
-    @GetMapping
     @RequestMapping(value= "/event/{id}/update")
     public String updateEvent(@PathVariable("id")Long id, Model model){
         log.debug("EventController updateEvent");
@@ -58,12 +54,5 @@ public class EventController {
         return "redirect:/event/"+savedEvent.getEventId()+"/show";
     }
 
-    @GetMapping
-    @RequestMapping(value="/event/{id}/delete")
-    public String deleteById(@PathVariable("id")Long id){
-        log.debug("Deleting Event ID: " + id);
 
-        eventService.deleteById(id);
-        return "redirect:/";
-    }
 }
