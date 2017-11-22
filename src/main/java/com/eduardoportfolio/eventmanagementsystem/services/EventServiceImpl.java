@@ -58,4 +58,10 @@ public class EventServiceImpl implements EventService{
         log.debug("Saved EventID: "+savedEvent.getEventId());
         return eventToEventCommand.convert(savedEvent);
     }
+
+    @Transactional
+    @Override
+    public EventCommand findCommandById(Long id) {
+        return eventToEventCommand.convert(getEventById(id));
+    }
 }
