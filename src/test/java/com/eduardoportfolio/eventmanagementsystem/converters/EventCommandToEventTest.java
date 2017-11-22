@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import static org.junit.Assert.*;
@@ -50,7 +49,7 @@ public class EventCommandToEventTest {
         EventCommand eventCommand = new EventCommand();
         eventCommand.setEventId(EVENT_ID);
         eventCommand.setEventName(EVENT_NAME);
-        eventCommand.setEvenDescription(EVENT_DESCRIPTION);
+        eventCommand.setEventDescription(EVENT_DESCRIPTION);
         eventCommand.setEventLocal(EVENT_LOCAL);
         eventCommand.setEventDate(EVENT_DATE);
         eventCommand.setEventSite(EVENT_SITE);
