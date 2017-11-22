@@ -4,6 +4,7 @@ import com.eduardoportfolio.eventmanagementsystem.models.Lecture;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,10 +20,11 @@ public class EventCommand {
 
     private Long eventId;
     private String eventName;
-    private String evenDescription;
+    private String eventDescription;
     private String eventSite;
     private String eventLocal;
     private String eventLogoPath;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
     private Boolean eventClosed;
     private List<LectureCommand> eventLectures = new ArrayList<>();
