@@ -1,7 +1,6 @@
 package com.eduardoportfolio.eventmanagementsystem.converters;
 
 import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
-import com.eduardoportfolio.eventmanagementsystem.commands.LectureCommand;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import com.eduardoportfolio.eventmanagementsystem.models.Lecture;
 import org.junit.Before;
@@ -71,7 +70,7 @@ public class EventToEventCommandTest {
         assertNotNull(eventCommand);
         assertEquals(EVENT_ID, eventCommand.getEventId());
         assertEquals(EVENT_NAME, eventCommand.getEventName());
-        assertEquals(EVENT_DESCRIPTION, eventCommand.getEvenDescription());
+        assertEquals(EVENT_DESCRIPTION, eventCommand.getEventDescription());
         assertEquals(EVENT_LOCAL, eventCommand.getEventLocal());
         assertEquals(EVENT_DATE, eventCommand.getEventDate());
         assertEquals(EVENT_SITE, eventCommand.getEventSite());
