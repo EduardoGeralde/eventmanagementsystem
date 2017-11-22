@@ -125,7 +125,7 @@
     </style>
 </head>
 <body>
-
+<!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
 <div class="jumbotron" th:replace="fragments/header::jumbotron">
     <div class="container-fluid">
         <h1>Event Management System</h1>
@@ -151,12 +151,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
                                 <tr th:each="event:${events}">
                                     <td th:text="${event.eventId}">1</td>
                                     <td th:text="${event.eventName}">Even name</td>
                                     <td th:datetime="${event.eventDate}">30/10/2017</td>
-                                    <td><a th:href="@{'event/'+ ${event.eventId}}">Event Details</a></td>
+                                    <td><a th:href="@{'event/'+ ${event.eventId} + '/show'}">Details</a></td>
+                                    <td><a th:href="@{'event/' + ${event.eventId} + '/update'} ">Update</a></td>
                                 </tr>
                             </tbody>
                          </table>
@@ -167,6 +167,5 @@
     </div>
 </div>
 <div class="container" th:replace="fragments/footer::footer"></div>
-
 </body>
 </html>
