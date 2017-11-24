@@ -29,7 +29,7 @@ public class EventToEventCommandTest {
 
     @Before
     public void setUp() throws Exception {
-        converter = new EventToEventCommand(new LectureToLectureCommand());
+        converter = new EventToEventCommand(new LectureToLectureCommand(new UserToUserCommand()),new UserToUserCommand());
     }
 
     @Test
