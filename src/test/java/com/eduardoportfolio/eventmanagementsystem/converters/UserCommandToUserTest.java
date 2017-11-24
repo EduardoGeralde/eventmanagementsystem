@@ -1,7 +1,5 @@
 package com.eduardoportfolio.eventmanagementsystem.converters;
 
-import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
-import com.eduardoportfolio.eventmanagementsystem.commands.LectureCommand;
 import com.eduardoportfolio.eventmanagementsystem.commands.UserCommand;
 import com.eduardoportfolio.eventmanagementsystem.models.User;
 import org.junit.Before;
@@ -25,8 +23,7 @@ public class UserCommandToUserTest {
 
     @Before
     public void setUp() throws Exception {
-        converter = new UserCommandToUser(new EventCommandToEvent(new LectureCommandToLecture()),
-                new LectureCommandToLecture());
+        converter = new UserCommandToUser();
     }
 
     @Test
@@ -44,24 +41,9 @@ public class UserCommandToUserTest {
         //given
         UserCommand userCommand = new UserCommand();
         userCommand.setUserId(USER_ID);
-        userCommand.setUserName(USER_NAME);
+        userCommand.setUsername(USER_NAME);
         userCommand.setPassword(USER_PASSWORD);
         userCommand.setUserEmail(USER_EMAIL);
-
-        LectureCommand lectureCommand1 = new LectureCommand();
-        lectureCommand1.setLectureId(LECTURE_ID1);
-        LectureCommand lectureCommand2 = new LectureCommand();
-        lectureCommand2.setLectureId(LECTURE_ID2);
-
-        EventCommand eventCommand1 = new EventCommand();
-        eventCommand1.setEventId(EVENT_ID1);
-        EventCommand eventCommand2 = new EventCommand();
-        eventCommand2.setEventId(EVENT_ID2);
-
-        userCommand.getLectures().add(lectureCommand1);
-        userCommand.getLectures().add(lectureCommand2);
-        userCommand.getEvents().add(eventCommand1);
-        userCommand.getEvents().add(eventCommand2);
 
         //when
         User user = converter.convert(userCommand);
@@ -72,8 +54,6 @@ public class UserCommandToUserTest {
         assertEquals(USER_NAME, user.getUsername());
         assertEquals(USER_PASSWORD, user.getPassword());
         assertEquals(USER_EMAIL, user.getUserEmail());
-        assertEquals(2, user.getUserLectures().size());
-        assertEquals(2, user.getUserEvents().size());
     }
 
 }
