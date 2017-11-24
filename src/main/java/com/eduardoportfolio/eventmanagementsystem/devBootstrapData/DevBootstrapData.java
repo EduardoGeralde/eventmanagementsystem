@@ -46,30 +46,37 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
         User user1 = userOptional1.get();
         User user2 = userOptional2.get();
 
+
         //Creating Lectures
         Lecture lecture1 = new Lecture();
         lecture1.setLectureTitle("Java APIs");
         lecture1.setLectureDescription("Explanation and hands on in some of the most important Java APIs ");
+        lecture1.setLecturer(user1);
 
         Lecture lecture2 = new Lecture();
         lecture2.setLectureTitle("Java and the WEB");
         lecture2.setLectureDescription("First web concepts using Java language and platform");
+        lecture2.setLecturer(user2);
 
         Lecture lecture3 = new Lecture();
         lecture3.setLectureTitle("Science behind the data");
         lecture3.setLectureDescription("Show the concepts and understanding about data and its powerful");
+        lecture3.setLecturer(user1);
 
         Lecture lecture4 = new Lecture();
         lecture4.setLectureTitle("Knowing data, knowing the hidden world");
         lecture4.setLectureDescription("How we can get data, clean data, and construct strategic based on it");
+        lecture4.setLecturer(user2);
 
         Lecture lecture5 = new Lecture();
         lecture5.setLectureTitle("Data Warehouse for BI in Industries");
         lecture5.setLectureDescription("BI for a long term memory in industries application");
+        lecture5.setLecturer(user1);
 
         Lecture lecture6 = new Lecture();
         lecture6.setLectureTitle("BI for client satisfactions");
         lecture6.setLectureDescription("What improve, transforming data in a realistic oprations");
+        lecture6.setLecturer(user2);
 
         //Creating Events
         Event event1 = new Event();
