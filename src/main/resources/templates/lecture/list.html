@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${event.eventName} + ' Lectures'">Event's Lectures</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<!--/*@thymesVar id="event" type="com.eduardoportfolio.eventmanagementsystem.models.Event"*/-->
+<!--/*@thymesVar id="lectures" type="java.util.Set<com.eduardoportfolio.eventmanagementsystem.commands.LectureCommand>"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title" th:text="'LECTURES FROM: '+ ${event.eventName}">Lectures</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(event.eventLectures)}">
+                        <table class="table table-hover ">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Lecturer</th>
+                                <th>View</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tr th:remove="all">
+                                <td>123</td>
+                                <td>Title test 1</td>
+                                <td><textarea rows="3">Test Description 1</textarea></td>
+                                <!--<td>John Thompson</td>-->
+                                <td><a href="#">View</a></td>
+                                <td><a href="#">Update</a></td>
+                                <td><a href="#">Delete</a></td>
+                            </tr>
+                            <tr th:remove="all">
+                                <td>456</td>
+                                <td>Title test 2</td>
+                                <td><textarea rows="3">Test Description 2</textarea></td>
+                                <!--<td>Michael Skirt</td>-->
+                                <td><a href="#">View</a></td>
+                                <td><a href="#">Update</a></td>
+                                <td><a href="#">Delete</a></td>
+                            </tr>
+                            <tr th:each="lecture : ${event.eventLectures}">
+                                <td th:text="${lecture.lectureId}">789</td>
+                                <td th:text="${lecture.lectureTitle}">Title test 3</td>
+                                <td><textarea rows="5" th:text="${lecture.lectureDescription}">Test Description 3</textarea></td>
+                                <td th:text="${lecture.lecturer.username}">Antony Josh</td>
+                                <td><a href="#" th:href="@{'/event/' + ${event.eventId} + '/lecture/' + ${lecture.lectureId} + '/show'}">View</a></td>
+                                <td><a href="#" th:href="@{'/event/' + ${event.eventId} + '/lecture/' + ${lecture.lectureId} + '/update'}">Update</a></td>
+                                <td><a href="#" th:href="@{'/event/' + ${event.eventId} + '/lecture/' + ${lecture.lectureId} + '/delete'}">Delete</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
