@@ -1,8 +1,6 @@
 package com.eduardoportfolio.eventmanagementsystem.converters;
 
 import com.eduardoportfolio.eventmanagementsystem.commands.UserCommand;
-import com.eduardoportfolio.eventmanagementsystem.models.Event;
-import com.eduardoportfolio.eventmanagementsystem.models.Lecture;
 import com.eduardoportfolio.eventmanagementsystem.models.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +23,7 @@ public class UserToUserCommandTest {
 
     @Before
     public void setUp() throws Exception {
-        converter = new UserToUserCommand(new LectureToLectureCommand(),
-                new EventToEventCommand(new LectureToLectureCommand()));
+        converter = new UserToUserCommand();
     }
 
     @Test
@@ -49,31 +46,14 @@ public class UserToUserCommandTest {
         user.setPassword(USER_PASSWORD);
         user.setUserEmail(USER_EMAIL);
 
-        Lecture lecture1 = new Lecture();
-        lecture1.setLectureId(LECTURE_ID1);
-        Lecture lecture2 = new Lecture();
-        lecture2.setLectureId(LECTURE_ID2);
-
-        Event event1 = new Event();
-        event1.setEventId(EVENT_ID1);
-        Event event2 = new Event();
-        event2.setEventId(EVENT_ID2);
-
-        user.getUserLectures().add(lecture1);
-        user.getUserLectures().add(lecture2);
-        user.getUserEvents().add(event1);
-        user.getUserEvents().add(event2);
-
         //when
         UserCommand userCommand = converter.convert(user);
 
         //then
         assertNotNull(userCommand);
         assertEquals(USER_ID, userCommand.getUserId());
-        assertEquals(USER_NAME, userCommand.getUserName());
+        assertEquals(USER_NAME, userCommand.getUsername());
         assertEquals(USER_PASSWORD, userCommand.getPassword());
         assertEquals(USER_EMAIL, userCommand.getUserEmail());
-        assertEquals(2, userCommand.getEvents().size());
-        assertEquals(2, userCommand.getLectures().size());
     }
 }
