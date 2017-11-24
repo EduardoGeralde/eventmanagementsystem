@@ -16,4 +16,6 @@ public class LectureCommand {
     private Long lectureId;
     private String lectureTitle;
     private String lectureDescription;
+    private UserCommand lecturer;
 }
+
