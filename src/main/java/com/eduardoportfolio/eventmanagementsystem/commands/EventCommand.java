@@ -28,4 +28,5 @@ public class EventCommand {
     private Calendar eventDate;
     private Boolean eventClosed;
     private List<LectureCommand> eventLectures = new ArrayList<>();
+    private UserCommand eventUser;
 }
