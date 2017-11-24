@@ -18,7 +18,7 @@ public class LectureToLectureCommandTest {
 
     @Before
     public void setUp() throws Exception {
-        converter = new LectureToLectureCommand();
+        converter = new LectureToLectureCommand(new UserToUserCommand());
     }
 
     @Test
