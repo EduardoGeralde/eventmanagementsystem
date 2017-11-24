@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class LectureCommandToLecture implements Converter<LectureCommand, Lecture>{
+    private final UserCommandToUser userCommandToUser;
+
+    public LectureCommandToLecture(UserCommandToUser userCommandToUser) {
+        this.userCommandToUser = userCommandToUser;
+    }
 
     @Synchronized
     @Nullable
@@ -25,6 +30,7 @@ public class LectureCommandToLecture implements Converter<LectureCommand, Lectur
         lecture.setLectureId(lectureCommand.getLectureId());
         lecture.setLectureTitle(lectureCommand.getLectureTitle());
         lecture.setLectureDescription(lectureCommand.getLectureDescription());
+        lecture.setLecturer(userCommandToUser.convert(lectureCommand.getLecturer()));
         return lecture;
     }
 }
