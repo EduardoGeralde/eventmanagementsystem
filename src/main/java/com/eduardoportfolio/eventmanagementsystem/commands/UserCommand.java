@@ -17,9 +17,7 @@ import java.util.List;
 public class UserCommand {
 
     private Long userId;
-    private String userName;
+    private String username;
     private String userEmail;
     private String password;
-    private List<EventCommand> events = new ArrayList<>();
-    private List<LectureCommand> lectures = new ArrayList<>();
 }
