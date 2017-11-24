@@ -14,9 +14,11 @@ import org.springframework.stereotype.Component;
 public class EventToEventCommand implements Converter<Event, EventCommand> {
 
     private final LectureToLectureCommand lectureConverter;
+    private final UserToUserCommand userToUserCommand;
 
-    public EventToEventCommand(LectureToLectureCommand lectureConverter) {
+    public EventToEventCommand(LectureToLectureCommand lectureConverter, UserToUserCommand userToUserCommand) {
         this.lectureConverter = lectureConverter;
+        this.userToUserCommand = userToUserCommand;
     }
 
     @Synchronized
@@ -36,6 +38,7 @@ public class EventToEventCommand implements Converter<Event, EventCommand> {
         eventCommand.setEventSite(event.getEventSite());
         eventCommand.setEventLogoPath(event.getEventLogoPath());
         eventCommand.setEventClosed(event.getEventClosed());
+        eventCommand.setEventUser(userToUserCommand.convert(event.getEventUser()));
 
         if (event.getEventLectures() != null && event.getEventLectures().size() > 0){
             event.getEventLectures()
