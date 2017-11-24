@@ -13,15 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserToUserCommand implements Converter<User, UserCommand> {
 
-    private final LectureToLectureCommand lectureConverter;
-    private final EventToEventCommand eventConverter;
-
-    public UserToUserCommand(LectureToLectureCommand lectureConverter,
-                             EventToEventCommand eventConverter) {
-        this.lectureConverter = lectureConverter;
-        this.eventConverter = eventConverter;
-    }
-
     @Synchronized
     @Nullable
     @Override
@@ -32,19 +23,9 @@ public class UserToUserCommand implements Converter<User, UserCommand> {
 
         UserCommand userCommand = new UserCommand();
         userCommand.setUserId(user.getUserId());
-        userCommand.setUserName(user.getUsername());
+        userCommand.setUsername(user.getUsername());
         userCommand.setPassword(user.getPassword());
         userCommand.setUserEmail(user.getUserEmail());
-
-        if (user.getUserLectures() != null && user.getUserLectures().size() > 0){
-            user.getUserLectures()
-                    .forEach(lecture -> userCommand.getLectures().add(lectureConverter.convert(lecture)));
-        }
-
-        if (user.getUserEvents() != null && user.getUserEvents().size() > 0){
-            user.getUserEvents()
-                    .forEach(event -> userCommand.getEvents().add(eventConverter.convert(event)));
-        }
 
         return userCommand;
     }
