@@ -2,6 +2,7 @@ package com.eduardoportfolio.eventmanagementsystem.controllers;
 
 import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
 import com.eduardoportfolio.eventmanagementsystem.services.EventService;
+import com.eduardoportfolio.eventmanagementsystem.services.LectureService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -26,6 +27,8 @@ public class LectureControllerTest {
 
     @Mock
     EventService eventService;
+    @Mock
+    LectureService lectureService;
 
     LectureController lectureController;
 
@@ -35,7 +38,7 @@ public class LectureControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        lectureController = new LectureController(eventService);
+        lectureController = new LectureController(eventService, lectureService);
         mockMvc = MockMvcBuilders.standaloneSetup(lectureController).build();
     }
 
