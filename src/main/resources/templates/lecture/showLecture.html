@@ -124,16 +124,98 @@
     </style>
 </head>
 <body>
+<!--/*@thymesVar id="lecture" type="com.eduardoportfolio.eventmanagementsystem.commands.LectureCommand"*/-->
 <div class="jumbotron" th:replace="fragments/header::jumbotron">
     <div class="container-fluid">
         <h1>Event Management System</h1>
         <p>Make your own events, easy and free !</p>
     </div>
 </div>
-
-
-
-
-<div class="container" th:replace="fragments/footer::footer"></div>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Lecture Details</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4>Lecture Id:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p th:text="${lecture.lectureId}">2</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Lecture Title:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p th:text="${lecture.lectureTitle}">Exposition Park</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Lecturer:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p th:text="${lecture.lecturer.username}">2</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4>UpVote:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p th:text="${lecture.upVote}">2</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>DownVote:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p th:text="${lecture.downVote}">2</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Suggestions:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <a th:text="${lecture.lecturer.getUserEmail()}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Lecture Description</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h4>Description:</h4>
+                        </div>
+                        <div class="col-md-2" style="margin-top: 10px">
+                            <textarea cols="60" rows="4" th:text="${lecture.lectureDescription}">2</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">User Comments</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Comments:</h4>
+                        <ol>
+                            <li th:remove="all">Quod mazim placerat facer possim assum typi non, habent claritatem insitam est.</li>
+                            <li th:remove="all">Usus legentis in iis qui facit eorum claritatem Investigationes?</li>
+                        </ol>
+                        <!--Todo: forEach Comment List-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:replace="fragments/footer::footer"></div>
 </body>
 </html>
