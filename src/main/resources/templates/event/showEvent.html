@@ -132,10 +132,6 @@
         <p>Make your own events, easy and free !</p>
     </div>
 </div>
-<div class="panel-heading col-md-offset-5">
-    <h1 th:text="${event.eventName}">Event Name</h1>
-</div>
-
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -193,16 +189,9 @@
                         </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <p th:text="${event.eventDescription}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                            dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                            nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                                            quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-                                            nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                            justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
-                                            Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-                                        </p>
-                                    </div>
+                                        <div class="col-md-2" style="margin-top: 10px">
+                                            <textarea cols="60" rows="4" th:text="${event.eventDescription}">2</textarea>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -220,6 +209,8 @@
                                             <tr>
                                                 <th th:text="#{lecture.column.id}">Lecture ID</th>
                                                 <th th:text="#{lecture.column.title}">Lecture Title</th>
+                                                <th th:text="#{lecture.column.upVote}">UpVote</th>
+                                                <th th:text="#{lecture.column.downVote}">DownVote</th>
                                                 <th th:text="#{lecture.column.details}">Lecture Details</th>
                                             </tr>
                                         </thead>
@@ -227,7 +218,10 @@
                                             <tr th:each="lecture : ${event.eventLectures}">
                                                 <td th:text="${lecture.lectureId}">3</td>
                                                 <td th:text="${lecture.lectureTitle}">Starting Programming</td>
-                                                <td><a th:href="@{'/lecture/'+ ${lecture.lectureId}}">Lecture Details</a></td>
+                                                <td align="center" th:text="${lecture.upVote}">12</td>
+                                                <td align="center" th:text="${lecture.downVote}">4</td>
+                                                <td><a th:href="@{'/event/'+ ${event.eventId}
+                                                                + '/lecture/' + ${lecture.lectureId} + '/show'}">Lecture Details</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
