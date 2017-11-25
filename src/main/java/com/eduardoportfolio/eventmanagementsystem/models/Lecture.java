@@ -5,6 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Eduardo on 23/10/17.
@@ -21,6 +23,8 @@ public class Lecture {
     private User lecturer;
     @NotEmpty
     private String lectureTitle;
+    private Long downVote;
+    private Long upVote;
     @Lob
     @NotEmpty
     private String lectureDescription;
