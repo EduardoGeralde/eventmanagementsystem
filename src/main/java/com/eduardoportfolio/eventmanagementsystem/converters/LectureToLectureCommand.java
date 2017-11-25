@@ -30,6 +30,8 @@ public class LectureToLectureCommand implements Converter<Lecture, LectureComman
         lectureCommand.setLectureId(lecture.getLectureId());
         lectureCommand.setLectureTitle(lecture.getLectureTitle());
         lectureCommand.setLectureDescription(lecture.getLectureDescription());
+        lectureCommand.setDownVote(lecture.getDownVote());
+        lectureCommand.setUpVote(lecture.getUpVote());
         lectureCommand.setLecturer(userToUserCommand.convert(lecture.getLecturer()));
         return lectureCommand;
     }
