@@ -17,5 +17,8 @@ public class LectureCommand {
     private String lectureTitle;
     private String lectureDescription;
     private UserCommand lecturer;
+    private Long downVote;
+    private Long upVote;
+    private Long eventId;
 }
 
