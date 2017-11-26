@@ -28,6 +28,9 @@ public class LectureToLectureCommand implements Converter<Lecture, LectureComman
 
         LectureCommand lectureCommand = new LectureCommand();
         lectureCommand.setLectureId(lecture.getLectureId());
+        if(lecture.getLectureEvent() != null) {
+            lectureCommand.setEventId(lecture.getLectureEvent().getEventId());
+        }
         lectureCommand.setLectureTitle(lecture.getLectureTitle());
         lectureCommand.setLectureDescription(lecture.getLectureDescription());
         lectureCommand.setDownVote(lecture.getDownVote());
