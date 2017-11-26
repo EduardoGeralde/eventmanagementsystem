@@ -1,6 +1,7 @@
 package com.eduardoportfolio.eventmanagementsystem.controllers;
 
 import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
+import com.eduardoportfolio.eventmanagementsystem.commands.LectureCommand;
 import com.eduardoportfolio.eventmanagementsystem.services.EventService;
 import com.eduardoportfolio.eventmanagementsystem.services.LectureService;
 import org.junit.Before;
@@ -55,5 +56,20 @@ public class LectureControllerTest {
                 .andExpect(model().attributeExists("event"));
         //then
         verify(eventService, times(1)).findCommandById(anyLong());
+    }
+
+    @Test
+    public void testShowLecture() throws Exception {
+        //given
+        LectureCommand lectureCommand = new LectureCommand();
+
+        //when
+        when(lectureService.findByEventIdAndLectureId(anyLong(),anyLong())).thenReturn(lectureCommand);
+
+        //then
+        mockMvc.perform(get("/event/1/lecture/2/show"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("lecture/showLecture"))
+                .andExpect(model().attributeExists("lecture"));
     }
 }
