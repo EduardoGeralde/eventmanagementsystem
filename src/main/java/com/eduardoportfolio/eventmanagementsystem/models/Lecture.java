@@ -32,4 +32,6 @@ public class Lecture {
     private String lectureDescription;
     @ManyToOne
     private Event lectureEvent;
+
+
 }
