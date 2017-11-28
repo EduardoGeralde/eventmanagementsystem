@@ -11,7 +11,9 @@ import java.util.List;
 /**
  * Created by Eduardo on 23/10/17.
  */
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = "lectureEvent")
 @Entity
 @Table(name="LECTURE_DETAIL")
 public class Lecture {
