@@ -137,7 +137,15 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1 class="panel-title" th:text="'LECTURES FROM: '+ ${event.eventName}">Lectures</h1>
+                    <div class="row">
+                        <div class="col-md-10 ">
+                            <h1 class="panel-title">Lectures</h1>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-default" href="#" th:href="@{'/event/' + ${event.eventId} +
+                             '/lecture/new'}" role="button">New Lecture</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive" th:if="${not #lists.isEmpty(event.eventLectures)}">
@@ -147,7 +155,8 @@
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>Description</th>
-                                <th>Lecturer</th>
+                                <!-- Add the Lecturer name after the new Lecture form get the user logged-->
+                                <!--<th>Lecturer</th>-->
                                 <th>View</th>
                                 <th>Update</th>
                                 <th>Delete</th>
@@ -156,7 +165,8 @@
                             <tr th:remove="all">
                                 <td>123</td>
                                 <td>Title test 1</td>
-                                <td><textarea rows="3">Test Description 1</textarea></td>
+                                <td><textarea rows="3" cols="50">Test Description 1</textarea></td>
+                                <!-- Add the Lecturer name after the new Lecture form get the user logged-->
                                 <!--<td>John Thompson</td>-->
                                 <td><a href="#">View</a></td>
                                 <td><a href="#">Update</a></td>
@@ -165,7 +175,8 @@
                             <tr th:remove="all">
                                 <td>456</td>
                                 <td>Title test 2</td>
-                                <td><textarea rows="3">Test Description 2</textarea></td>
+                                <td><textarea rows="3" cols="50">Test Description 2</textarea></td>
+                                <!-- Add the Lecturer name after the new Lecture form get the user logged-->
                                 <!--<td>Michael Skirt</td>-->
                                 <td><a href="#">View</a></td>
                                 <td><a href="#">Update</a></td>
@@ -174,8 +185,9 @@
                             <tr th:each="lecture : ${event.eventLectures}">
                                 <td th:text="${lecture.lectureId}">789</td>
                                 <td th:text="${lecture.lectureTitle}">Title test 3</td>
-                                <td><textarea rows="5" th:text="${lecture.lectureDescription}">Test Description 3</textarea></td>
-                                <td th:text="${lecture.lecturer.username}">Antony Josh</td>
+                                <td><textarea rows="3" cols="50" th:text="${lecture.lectureDescription}">Test Description 3</textarea></td>
+                                <!-- Add the Lecturer name after the new Lecture form get the user logged-->
+                                <!--<td th:text="${lecture.lecturer.username}">Antony Josh</td>-->
                                 <td><a href="#" th:href="@{'/event/' + ${event.eventId} + '/lecture/' + ${lecture.lectureId} + '/show'}">View</a></td>
                                 <td><a href="#" th:href="@{'/event/' + ${event.eventId} + '/lecture/' + ${lecture.lectureId} + '/update'}">Update</a></td>
                                 <td><a href="#" th:href="@{'/event/' + ${event.eventId} + '/lecture/' + ${lecture.lectureId} + '/delete'}">Delete</a></td>
