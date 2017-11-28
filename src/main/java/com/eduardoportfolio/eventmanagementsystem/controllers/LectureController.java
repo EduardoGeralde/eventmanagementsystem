@@ -1,5 +1,6 @@
 package com.eduardoportfolio.eventmanagementsystem.controllers;
 
+import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
 import com.eduardoportfolio.eventmanagementsystem.commands.LectureCommand;
 import com.eduardoportfolio.eventmanagementsystem.models.Lecture;
 import com.eduardoportfolio.eventmanagementsystem.services.EventService;
@@ -62,5 +63,17 @@ public class LectureController {
         log.debug("Saved EventId: "+savedCommand.getEventId());
         log.debug("Saved LectureId: "+savedCommand.getLectureId());
         return "redirect:/event/"+savedCommand.getEventId()+"/lecture/"+savedCommand.getLectureId()+"/show";
+    }
+
+    @GetMapping
+    @RequestMapping("/event/{eventId}/lecture/new")
+    public String newLecture(@PathVariable ("eventId") Long eventId, Model model){
+        log.debug("LectureController newLecture");
+
+        LectureCommand lectureCommand = new LectureCommand();
+        lectureCommand.setEventId(eventId);
+        model.addAttribute("lecture", lectureCommand);
+
+        return "lecture/lectureForm";
     }
 }
