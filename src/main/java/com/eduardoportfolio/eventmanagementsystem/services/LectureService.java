@@ -8,4 +8,5 @@ import com.eduardoportfolio.eventmanagementsystem.commands.LectureCommand;
 public interface LectureService {
     LectureCommand findByEventIdAndLectureId(Long eventId, Long lectureId);
     LectureCommand saveLectureCommand(LectureCommand lectureCommand);
+    void deleteById(Long eventId, Long lectureId);
 }
