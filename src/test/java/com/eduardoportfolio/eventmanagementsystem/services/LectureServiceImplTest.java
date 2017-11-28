@@ -1,7 +1,9 @@
 package com.eduardoportfolio.eventmanagementsystem.services;
 
 import com.eduardoportfolio.eventmanagementsystem.commands.LectureCommand;
+import com.eduardoportfolio.eventmanagementsystem.converters.LectureCommandToLecture;
 import com.eduardoportfolio.eventmanagementsystem.converters.LectureToLectureCommand;
+import com.eduardoportfolio.eventmanagementsystem.converters.UserCommandToUser;
 import com.eduardoportfolio.eventmanagementsystem.converters.UserToUserCommand;
 import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
@@ -15,6 +17,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -25,9 +28,11 @@ import static org.mockito.Mockito.when;
 public class LectureServiceImplTest {
 
     private final LectureToLectureCommand lectureToLectureCommand;
+    private final LectureCommandToLecture lectureCommandToLecture;
 
     public LectureServiceImplTest() {
         this.lectureToLectureCommand = new LectureToLectureCommand(new UserToUserCommand());
+        this.lectureCommandToLecture = new LectureCommandToLecture(new UserCommandToUser());
     }
 
     @Mock
@@ -39,7 +44,7 @@ public class LectureServiceImplTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        lectureService = new LectureServiceImpl(lectureToLectureCommand, eventDAO);
+        lectureService = new LectureServiceImpl(lectureToLectureCommand, lectureCommandToLecture, eventDAO);
     }
 
     @Test
@@ -76,5 +81,31 @@ public class LectureServiceImplTest {
         assertEquals(Long.valueOf(1L), lectureCommand.getEventId());
         assertEquals(Long.valueOf(3L), lectureCommand.getLectureId());
         verify(eventDAO, times(1)).findById(anyLong());
+    }
+
+    @Test
+    public void testSaveLectureCommand() throws Exception {
+        //gives
+        LectureCommand lectureCommand = new LectureCommand();
+        lectureCommand.setLectureId(1L);
+        lectureCommand.setEventId(2L);
+
+        Optional<Event> eventOptional = Optional.of(new Event());
+
+        Event savedEvent = new Event();
+        savedEvent.addLecture(new Lecture());
+        savedEvent.getEventLectures().iterator().next().setLectureId(3L);
+
+        //setting up mockito
+        when(eventDAO.findById(anyLong())).thenReturn(eventOptional);
+        when(eventDAO.save(any())).thenReturn(savedEvent);
+
+        //when
+        LectureCommand savedCommand = lectureService.saveLectureCommand(lectureCommand);
+
+        //then
+        assertEquals(Long.valueOf(3L), savedCommand.getLectureId());
+        verify(eventDAO, times(1)).findById(anyLong());
+        verify(eventDAO, times(1)).save(any(Event.class));
     }
 }
