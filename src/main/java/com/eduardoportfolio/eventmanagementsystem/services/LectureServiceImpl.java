@@ -104,4 +104,36 @@ public class LectureServiceImpl implements LectureService {
             return lectureToLectureCommand.convert(savedLectureOptional.get());
         }
     }
+
+    @Override
+    public void deleteById(Long eventId, Long lectureId) {
+        log.debug("LectureServiceImpl - Deleting LectureId: "+lectureId);
+
+        Optional<Event> eventOptional = eventDAO.findById(eventId);
+
+        if(eventOptional.isPresent()) {
+            Event event = eventOptional.get();
+            log.debug("Recipe Found");
+
+            Optional<Lecture> lectureOptional = event
+                    .getEventLectures()
+                    .stream()
+                    .filter(lecture -> lecture.getLectureId().equals(lectureId))
+                    .findFirst();
+
+            if (lectureOptional.isPresent()) {
+                Lecture lectureToDelete = lectureOptional.get();
+                log.debug("Lecture Found");
+                lectureToDelete.setLectureEvent(null);
+                event.getEventLectures().remove(lectureOptional.get());
+                eventDAO.save(event);
+            } else {
+                log.debug("LectureId Not Found: " + lectureId);
+                throw new RuntimeException("LectureId Not Found");
+            }
+        } else {
+            log.debug("EventId Not Found: " + eventId);
+            throw new RuntimeException("EventId Not Found");
+        }
+    }
 }
