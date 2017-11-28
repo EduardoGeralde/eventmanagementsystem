@@ -87,7 +87,7 @@ public class LectureServiceImplTest {
     public void testSaveLectureCommand() throws Exception {
         //gives
         LectureCommand lectureCommand = new LectureCommand();
-        lectureCommand.setLectureId(1L);
+        lectureCommand.setLectureId(3L);
         lectureCommand.setEventId(2L);
 
         Optional<Event> eventOptional = Optional.of(new Event());
