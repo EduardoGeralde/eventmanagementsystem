@@ -76,4 +76,13 @@ public class LectureController {
 
         return "lecture/lectureForm";
     }
+
+    @GetMapping
+    @RequestMapping("/event/{eventId}/lecture/{lectureId}/delete")
+    public String deleteLecture(@PathVariable("eventId")Long eventId,
+                                @PathVariable("lectureId")Long lectureId){
+        log.debug("LectureController - Deleting LectureId: "+lectureId);
+        lectureService.deleteById(eventId, lectureId);
+        return "redirect:/event/"+eventId+"/lectures";
+    }
 }
