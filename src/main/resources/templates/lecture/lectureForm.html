@@ -134,7 +134,7 @@
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form th:object="${lecture}" th:action="@{'/event/'+${lecture.eventId}+'/lecture'}">
+            <form method="post" th:object="${lecture}" th:action="@{'/event/'+${lecture.eventId}+'/lecture'}">
                 <input type="hidden" th:field="*{lectureId}"/>
                 <div class="pannel-group">
                     <div class="panel panel-primary">
