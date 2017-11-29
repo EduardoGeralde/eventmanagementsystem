@@ -25,40 +25,35 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping
-    @RequestMapping(value = "/event/form", method = RequestMethod.GET)
+    @GetMapping("/event/form")
     public String eventForm(Model model){
         log.debug("EventController eventForm");
         model.addAttribute("event", new EventCommand());
         return "event/eventForm";
     }
 
-    @GetMapping
-    @RequestMapping(value = "/event/{id}/show")
+    @GetMapping("/event/{id}/show")
     public String getEventById(@PathVariable("id")Long id, Model model){
         log.debug("EventController getEventById");
         model.addAttribute("event", eventService.getEventById(id));
         return "event/showEvent";
     }
 
-    @GetMapping
-    @RequestMapping(value= "/event/{id}/update")
+    @GetMapping("/event/{id}/update")
     public String updateEvent(@PathVariable("id")Long id, Model model){
         log.debug("EventController updateEvent");
         model.addAttribute("event", eventService.findCommandById(id));
         return "event/eventForm";
     }
 
-    @PostMapping
-    @RequestMapping(value = "event")
+    @PostMapping("/event")
     public String saveOrUpdate(@ModelAttribute EventCommand eventCommand){
         log.debug("EventController saveOrUpdate");
         EventCommand savedEvent = eventService.saveEventCommand(eventCommand);
         return "redirect:/event/"+savedEvent.getEventId()+"/show";
     }
 
-    @GetMapping
-    @RequestMapping(value = "/event/{id}/delete")
+    @GetMapping("/event/{id}/delete")
     public String deleteById(@PathVariable("id")Long id){
         log.debug("Deleting Event ID: " + id);
 
