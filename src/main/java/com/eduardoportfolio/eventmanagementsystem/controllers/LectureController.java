@@ -25,8 +25,7 @@ public class LectureController {
         this.lectureService = lectureService;
     }
 
-    @GetMapping
-    @RequestMapping(value = "/event/{eventId}/lectures")
+    @GetMapping("/event/{eventId}/lectures")
     public String listLectures(@PathVariable("eventId")Long eventId, Model model){
         log.debug("LectureController listLectures eventID: "+eventId);
 
@@ -35,8 +34,7 @@ public class LectureController {
         return "lecture/list";
     }
 
-    @GetMapping
-    @RequestMapping(value="/event/{eventId}/lecture/{lectureId}/show")
+    @GetMapping("/event/{eventId}/lecture/{lectureId}/show")
     public String showLecture(@PathVariable("eventId") Long eventId,
                               @PathVariable("lectureId") Long lectureId, Model model){
         log.debug("LectureController showLecture");
@@ -46,8 +44,7 @@ public class LectureController {
         return "lecture/showLecture";
     }
 
-    @GetMapping
-    @RequestMapping("/event/{eventId}/lecture/{lectureId}/update")
+    @GetMapping("/event/{eventId}/lecture/{lectureId}/update")
     public String updateEventLecture(@PathVariable("eventId") Long eventId,
                                      @PathVariable("lectureId")Long lectureId, Model model){
         log.debug("LectureController updateEventLecture");
@@ -56,8 +53,7 @@ public class LectureController {
         return "lecture/lectureForm";
     }
 
-    @PostMapping
-    @RequestMapping("/event/{eventId}/lecture")
+    @PostMapping("/event/{eventId}/lecture")
     public String saveOrUpdate(@ModelAttribute LectureCommand lectureCommand){
         LectureCommand savedCommand = lectureService.saveLectureCommand(lectureCommand);
         log.debug("Saved EventId: "+savedCommand.getEventId());
@@ -65,8 +61,7 @@ public class LectureController {
         return "redirect:/event/"+savedCommand.getEventId()+"/lecture/"+savedCommand.getLectureId()+"/show";
     }
 
-    @GetMapping
-    @RequestMapping("/event/{eventId}/lecture/new")
+    @GetMapping("/event/{eventId}/lecture/new")
     public String newLecture(@PathVariable ("eventId") Long eventId, Model model){
         log.debug("LectureController newLecture");
 
@@ -77,8 +72,7 @@ public class LectureController {
         return "lecture/lectureForm";
     }
 
-    @GetMapping
-    @RequestMapping("/event/{eventId}/lecture/{lectureId}/delete")
+    @GetMapping("/event/{eventId}/lecture/{lectureId}/delete")
     public String deleteLecture(@PathVariable("eventId")Long eventId,
                                 @PathVariable("lectureId")Long lectureId){
         log.debug("LectureController - Deleting LectureId: "+lectureId);
