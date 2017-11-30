@@ -20,7 +20,6 @@ public class EventToEventCommandTest {
     public static final String EVENT_DESCRIPTION = "Event Description";
     public static final String EVENT_LOCAL = "Event Local";
     public static final String EVENT_SITE = "www.event.com";
-    public static final String EVENT_LOGOPATH = "/user/images/logo.png";
     public static final Boolean EVENT_CLOSED = Boolean.FALSE;
     public static final Calendar EVENT_DATE = new GregorianCalendar(2013, 10,10);
     public static final Long LECTURE_ID1 = 2L;
@@ -52,7 +51,6 @@ public class EventToEventCommandTest {
         event.setEventLocal(EVENT_LOCAL);
         event.setEventDate(EVENT_DATE);
         event.setEventSite(EVENT_SITE);
-        event.setEventLogoPath(EVENT_LOGOPATH);
         event.setEventClosed(EVENT_CLOSED);
 
         Lecture lecture1 = new Lecture();
@@ -74,7 +72,6 @@ public class EventToEventCommandTest {
         assertEquals(EVENT_LOCAL, eventCommand.getEventLocal());
         assertEquals(EVENT_DATE, eventCommand.getEventDate());
         assertEquals(EVENT_SITE, eventCommand.getEventSite());
-        assertEquals(EVENT_LOGOPATH, eventCommand.getEventLogoPath());
         assertEquals(EVENT_CLOSED, eventCommand.getEventClosed());
         assertEquals(2, eventCommand.getEventLectures().size());
     }
