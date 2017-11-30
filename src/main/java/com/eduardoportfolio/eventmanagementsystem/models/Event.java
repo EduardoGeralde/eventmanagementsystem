@@ -27,7 +27,8 @@ public class Event {
     private String eventSite;
     @NotEmpty
     private String eventLocal;
-    private String eventLogoPath;
+    @Lob
+    private Byte[] eventLogo;
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
     private Boolean eventClosed;
