@@ -141,48 +141,45 @@
                         <h1 class="panel-title" th:text="#{event.column.details}">Event Details</h1>
                     </div>
                     <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <h4>Event Id:</h4>
-                                </div>
-                                <div class="col-md-2" style="margin-top: 10px">
-                                    <p th:text="${event.eventId}">2</p>
-                                </div>
-                                <div class="col-md-2">
-                                    <h4>Event Local:</h4>
-                                </div>
-                                <div class="col-md-2" style="margin-top: 10px">
-                                    <p th:text="${event.eventLocal}">Exposition Park</p>
-                                </div>
-                                <div class="col-md-2">
-                                    <h4>Event Creator:</h4>
-                                </div>
-                                <div class="col-md-2" style="margin-top: 10px">
-                                    <p>Eduardo Geralde</p>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="../../images/imgExample.jpg" th:src="@{/images/imgExample.jpg}" width="200" height="100"/>
                             </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <h4>Event Name:</h4>
-                                </div>
-                                <div class="col-md-2" style="margin-top: 10px">
-                                    <p th:text="${event.eventName}">Java EE MeetUp</p>
-                                </div>
-                                <div class="col-md-2">
-                                    <h4>Event Date:</h4>
-                                </div>
-                                <div class="col-md-2" style="margin-top: 10px">
-                                    <p th:datetime="${event.eventDate}">10/10/2018</p>
-                                </div>
-                                <div class="col-md-2">
-                                    <h4>Event Site:</h4>
-                                </div>
-                                <div class="col-md-2"style="margin-top: 10px">
-                                    <a th:text="${event.eventSite}">www.eventsite.com</a>
-                                </div>
-                                </div>
+                            <div class="col-md-2">
+                                <h4>Event Name:</h4>
                             </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p th:text="${event.eventName}">Java EE MeetUp</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Event Date:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p th:datetime="${event.eventDate}">10/10/2018</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4>Event Local:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p th:text="${event.eventLocal}">Exposition Park</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Event Creator:</h4>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <p>Eduardo Geralde</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Event Site:</h4>
+                            </div>
+                            <div class="col-md-2"style="margin-top: 10px">
+                                <a th:text="${event.eventSite}">www.eventsite.com</a>
+                            </div>
+                        </div>
                     </div>
+                </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h1 class="panel-title" >Event Description</h1>
