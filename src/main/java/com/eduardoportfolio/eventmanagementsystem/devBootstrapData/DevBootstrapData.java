@@ -94,7 +94,6 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
         event1.setEventLocal("Anhembi Centre");
         event1.setEventDate(Calendar.getInstance());
         event1.setEventDescription("Event that brought together, the amazing Java EE community");
-        event1.setEventLogoPath("/users/resources/javaee.png");
         event1.setEventSite("www.javaee.com");
         event1.setEventUser(user1);
         lecture1.setLectureEvent(event1);
@@ -110,7 +109,6 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
         event2.setEventLocal("Latin America Culture Space");
         event2.setEventDate(Calendar.getInstance());
         event2.setEventDescription("All Data Scientists learning together");
-        event2.setEventLogoPath("/users/resources/datascience.png");
         event2.setEventSite("www.datascience.com");
         event2.setEventUser(user2);
         lecture3.setLectureEvent(event2);
@@ -126,7 +124,6 @@ public class DevBootstrapData implements ApplicationListener<ContextRefreshedEve
         event3.setEventLocal("Paladium Boulevard");
         event3.setEventDate(Calendar.getInstance());
         event3.setEventDescription("Let's apply all the knowledge through the BI analysis");
-        event3.setEventLogoPath("/users/resources/databi.png");
         event3.setEventSite("www.datawarehouse.com");
         event3.setEventUser(user2);
         lecture5.setLectureEvent(event3);
