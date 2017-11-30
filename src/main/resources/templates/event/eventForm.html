@@ -139,17 +139,30 @@
                 <div class="pannel-group">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h1 class="panel-title">Event Information</h1>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h1 class="panel-title">Event Information</h1>
+                                </div>
+                                <div class="col-md-1">
+                                    <a class="btn btn-default" href="#" th:href="@{'/event/'+ ${event.eventId} + '/image'}" role="button">
+                                        Change Logo
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <div class="col-md-5 form-group">
+                                    <img src="../../static/images/imgExample.jpg" th:src="@{/images/imgExample.jpg}"
+                                         width="300" height="200"/>
+                                </div>
                                 <div class="col-md-3 form-group">
                                     <label>Event Name:</label>
                                     <input type="text" class="form-control" th:field="*{eventName}"/>
                                 </div>
-                                <div class="col-md-9 form-group">
+                                <div class="col-md-4 form-group">
                                     <label>Event Description:</label>
-                                    <textarea class="form-control" rows="3" th:field="*{eventDescription}"></textarea>
+                                    <textarea class="form-control" rows="7" th:field="*{eventDescription}"></textarea>
                                 </div>
                             </div>
                             <div class="row">
