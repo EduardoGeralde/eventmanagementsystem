@@ -115,7 +115,7 @@ public class LectureControllerTest {
 
         mockMvc.perform(get("/event/1/lecture/2/delete"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/lecture/list"));
+                .andExpect(view().name("redirect:/event/1/lectures"));
         verify(lectureService,times(1)).deleteById(anyLong(),anyLong());
     }
 }
