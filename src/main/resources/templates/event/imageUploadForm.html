@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Upload Form</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <link th:href="@{/css/sticky-footer-navbar.css}" rel="stylesheet" media="screen"/>
+
+    <link th:href="@{/css/custom.css}" rel="stylesheet" media="screen"/>
+
+    <style th:remove="all">
+        .jumbotron {
+            background: url('https://d2vvqscadf4c1f.cloudfront.net/rGIBmJUAT46UuLPwXo3K_Fedora_Core_Ultimate2.jpg') no-repeat center center;
+            height: 350px;
+            color: white;
+            text-shadow: #444 0 1px 1px;
+        }
+        body {
+            color: #2b3636;
+            font-family: "Proxima";
+        }
+        body {
+            color: #333;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857;
+        }
+        .row {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        *::before, *::after {
+            box-sizing: border-box;
+        }
+        *::before, *::after {
+            box-sizing: border-box;
+        }
+        .view-directory .course-listing {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .course-listing {
+            background-color: #f7f7f7;
+            border: 1px solid #f1f3f0;
+            border-radius: 9px;
+            box-shadow: 0 1px #f1f3f0;
+            cursor: pointer;
+            height: 390px;
+            margin-bottom: 50px;
+            padding: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .course-listing .course-box-image-container {
+            max-height: 208px;
+            overflow: hidden;
+        }
+        .course-listing .course-box-image-container .course-box-image {
+            border-bottom: 1px solid #ededed;
+            border-top-left-radius: 9px;
+            border-top-right-radius: 9px;
+            display: block;
+            margin: auto;
+            width: 100%;
+        }
+        img {
+            vertical-align: middle;
+        }
+        img {
+            border: 0 none;
+        }
+        .course-listing .course-listing-title {
+            color: #6cb44a;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 25px;
+            max-height: 70px;
+            overflow: hidden;
+            padding: 16px 16px 4px;
+        }
+        .course-listing .course-listing-subtitle {
+            color: #586f6f;
+            font-size: 14px;
+            font-weight: 200;
+            max-height: 65px;
+            overflow: hidden;
+            padding: 5px 16px;
+        }
+        .course-listing .course-listing-extra-info .course-price {
+            color: #6eae50 !important;
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 34px;
+            padding-right: 10px;
+            text-align: right;
+        }
+        .course-listing .course-listing-extra-info .course-author-name {
+            font-size: 15px;
+            font-weight: 200;
+            line-height: 30px;
+            max-height: 30px;
+            overflow: hidden;
+            padding-left: 5px;
+        }
+        .course-listing .course-listing-extra-info .course-bundle {
+            font-size: 15px;
+            font-weight: 200;
+            line-height: 30px;
+        }
+    </style>
+
+</head>
+<body>
+<!--/*@thymesVar id="event" type="com.eduardoportfolio.models.Event"*/-->
+<div class="jumbotron" th:replace="fragments/header::jumbotron">
+    <div class="container-fluid">
+        <h1>Event Management System</h1>
+        <p>Make your own events, easy and free !</p>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Upload a new Event logo</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <form  action="http:\\localhost" method="post" enctype="multipart/form-data"
+                                       th:action="@{'/event/' + ${event.eventId} + '/image'}">
+                                    <label class="control-label">Select File</label>
+                                    <input id="imagefile" name="imagefile" type="file" class="file">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" th:replace="fragments/footer::footer"></div>
+</body>
+</html>
