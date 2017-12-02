@@ -28,7 +28,6 @@ public class LectureController {
     @GetMapping("/event/{eventId}/lectures")
     public String listLectures(@PathVariable("eventId")Long eventId, Model model){
         log.debug("LectureController listLectures eventID: "+eventId);
-
         //use command object to avoid lazy load errors in thymeleaf
         model.addAttribute("event", eventService.findCommandById(eventId));
         return "lecture/list";
@@ -38,7 +37,6 @@ public class LectureController {
     public String showLecture(@PathVariable("eventId") Long eventId,
                               @PathVariable("lectureId") Long lectureId, Model model){
         log.debug("LectureController showLecture");
-
         //use command object to avoid lazy load errors in thymeleaf
         model.addAttribute("lecture", lectureService.findByEventIdAndLectureId(eventId,lectureId));
         return "lecture/showLecture";
@@ -48,7 +46,6 @@ public class LectureController {
     public String updateEventLecture(@PathVariable("eventId") Long eventId,
                                      @PathVariable("lectureId")Long lectureId, Model model){
         log.debug("LectureController updateEventLecture");
-
         model.addAttribute("lecture",lectureService.findByEventIdAndLectureId(eventId,lectureId));
         return "lecture/lectureForm";
     }
@@ -64,11 +61,9 @@ public class LectureController {
     @GetMapping("/event/{eventId}/lecture/new")
     public String newLecture(@PathVariable ("eventId") Long eventId, Model model){
         log.debug("LectureController newLecture");
-
         LectureCommand lectureCommand = new LectureCommand();
         lectureCommand.setEventId(eventId);
         model.addAttribute("lecture", lectureCommand);
-
         return "lecture/lectureForm";
     }
 
