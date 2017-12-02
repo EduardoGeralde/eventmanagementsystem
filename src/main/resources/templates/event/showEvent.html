@@ -143,7 +143,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="../../images/imgExample.jpg" th:src="@{/images/imgExample.jpg}" width="200" height="100"/>
+                                <img src="../../images/imgExample.jpg" th:src="@{'/event/'+ ${event.eventId} + '/eventImage'}" width="200" height="100"/>
                             </div>
                             <div class="col-md-2">
                                 <h4>Event Name:</h4>
