@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Lob;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -23,7 +24,7 @@ public class EventCommand {
     private String eventDescription;
     private String eventSite;
     private String eventLocal;
-    private String eventLogoPath;
+    private Byte[] eventLogo;
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar eventDate;
     private Boolean eventClosed;
