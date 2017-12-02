@@ -37,6 +37,7 @@ public class EventToEventCommand implements Converter<Event, EventCommand> {
         eventCommand.setEventDate(event.getEventDate());
         eventCommand.setEventSite(event.getEventSite());
         eventCommand.setEventClosed(event.getEventClosed());
+        eventCommand.setEventLogo(event.getEventLogo());
         eventCommand.setEventUser(userToUserCommand.convert(event.getEventUser()));
 
         if (event.getEventLectures() != null && event.getEventLectures().size() > 0){
