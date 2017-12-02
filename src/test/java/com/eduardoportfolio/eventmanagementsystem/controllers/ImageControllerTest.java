@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
@@ -72,4 +73,33 @@ public class ImageControllerTest {
                 .andExpect(header().string("Location", "/event/1/show"));
         verify(imageService, times(1)).saveImageFile(anyLong(),any());
     }
+
+    @Test
+    public void testRenderImageFromDB() throws Exception {
+        //given
+        EventCommand eventCommand = new EventCommand();
+        eventCommand.setEventId(1L);
+
+        String s = "fake image test";
+        Byte[] bytesBoxed = new Byte[s.getBytes().length];
+
+        int i = 0;
+        for (byte primeByte : s.getBytes()){
+            bytesBoxed[i++] = primeByte;
+        }
+        eventCommand.setEventLogo(bytesBoxed);
+
+        when(eventService.findCommandById(anyLong())).thenReturn(eventCommand);
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(get("/event/1/eventImage"))
+                .andExpect(status().isOk())
+                .andReturn().getResponse();
+
+        byte[] responseByte = response.getContentAsByteArray();
+
+        //then
+        assertEquals(s.getBytes().length, responseByte.length);
+    }
+
 }
