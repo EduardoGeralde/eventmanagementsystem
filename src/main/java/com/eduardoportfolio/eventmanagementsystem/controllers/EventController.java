@@ -2,14 +2,17 @@ package com.eduardoportfolio.eventmanagementsystem.controllers;
 
 import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
 import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
+import com.eduardoportfolio.eventmanagementsystem.exceptions.NotFoundException;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import com.eduardoportfolio.eventmanagementsystem.services.EventService;
 import com.eduardoportfolio.eventmanagementsystem.services.EventServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Eduardo on 23/10/17.
@@ -58,5 +61,15 @@ public class EventController {
         log.debug("Deleting Event ID: " + id);
         eventService.deleteById(id);
         return "redirect:/";
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFound(){
+        log.error("Handling Not Found Exception");
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("404error");
+        return modelAndView;
     }
 }
