@@ -1,6 +1,7 @@
 package com.eduardoportfolio.eventmanagementsystem.controllers;
 
 import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
+import com.eduardoportfolio.eventmanagementsystem.exceptions.NotFoundException;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import com.eduardoportfolio.eventmanagementsystem.services.EventService;
 import org.junit.Before;
@@ -101,5 +102,16 @@ public class EventControllerTest {
                 .andExpect(view().name("redirect:/"));
 
         verify(eventService, times(1)).deleteById(anyLong());
+    }
+
+    @Test
+    public void testRecipeByIdNotFound() throws Exception {
+        Event event = new Event();
+        event.setEventId(1L);
+
+        when(eventService.getEventById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("event/1/show"))
+                .andExpect(status().isNotFound());
     }
 }
