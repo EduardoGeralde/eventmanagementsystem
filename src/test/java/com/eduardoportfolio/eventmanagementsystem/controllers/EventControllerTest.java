@@ -111,7 +111,8 @@ public class EventControllerTest {
 
         when(eventService.getEventById(anyLong())).thenThrow(NotFoundException.class);
 
-        mockMvc.perform(get("event/1/show"))
-                .andExpect(status().isNotFound());
+        mockMvc.perform(get("/event/1/show"))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("404error"));
     }
 }
