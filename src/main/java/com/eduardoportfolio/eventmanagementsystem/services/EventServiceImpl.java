@@ -46,7 +46,7 @@ public class EventServiceImpl implements EventService{
         Optional<Event> eventOptional = eventDAO.findById(id);
 
         if(!eventOptional.isPresent()){
-            throw new NotFoundException("Event Not Found!!");
+            throw new NotFoundException("Event Not Found, For ID Value: "+id.toString());
         }
         return eventOptional.get();
     }
