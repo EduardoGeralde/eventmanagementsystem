@@ -4,6 +4,7 @@ import com.eduardoportfolio.eventmanagementsystem.commands.EventCommand;
 import com.eduardoportfolio.eventmanagementsystem.converters.EventCommandToEvent;
 import com.eduardoportfolio.eventmanagementsystem.converters.EventToEventCommand;
 import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
+import com.eduardoportfolio.eventmanagementsystem.exceptions.NotFoundException;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class EventServiceImpl implements EventService{
         Optional<Event> eventOptional = eventDAO.findById(id);
 
         if(!eventOptional.isPresent()){
-            throw new RuntimeException("Event Not Found");
+            throw new NotFoundException("Event Not Found!!");
         }
         return eventOptional.get();
     }
