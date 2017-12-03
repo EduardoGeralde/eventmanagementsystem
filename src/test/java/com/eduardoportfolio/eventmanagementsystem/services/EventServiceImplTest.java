@@ -3,6 +3,7 @@ package com.eduardoportfolio.eventmanagementsystem.services;
 import com.eduardoportfolio.eventmanagementsystem.converters.EventCommandToEvent;
 import com.eduardoportfolio.eventmanagementsystem.converters.EventToEventCommand;
 import com.eduardoportfolio.eventmanagementsystem.daos.EventDAO;
+import com.eduardoportfolio.eventmanagementsystem.exceptions.NotFoundException;
 import com.eduardoportfolio.eventmanagementsystem.models.Event;
 import org.junit.Before;
 import org.junit.Test;
@@ -84,4 +85,14 @@ public class EventServiceImplTest {
         verify(eventDAO, times(1)).deleteById(anyLong());
     }
 
+    @Test (expected = NotFoundException.class)
+    public void testEventByIdNotFound() throws Exception {
+        Optional<Event> eventOptional = Optional.empty();
+
+        when(eventDAO.findById(anyLong())).thenReturn(eventOptional);
+
+        Event eventReturned = eventService.getEventById(1L);
+
+        //should go boom
+    }
 }
