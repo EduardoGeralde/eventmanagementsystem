@@ -39,7 +39,9 @@ public class EventControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         eventController = new EventController(eventService);
-        mockMvc = MockMvcBuilders.standaloneSetup(eventController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(eventController)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
     }
 
     @Test
