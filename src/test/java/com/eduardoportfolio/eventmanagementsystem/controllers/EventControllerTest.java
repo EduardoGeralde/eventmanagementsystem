@@ -78,10 +78,29 @@ public class EventControllerTest {
         when(eventService.saveEventCommand(any())).thenReturn(eventCommand);
 
         mockMvc.perform(post("/event").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-        .param("eventId", "")
-        .param("eventDescription", "some description"))
+                .param("eventId", "")
+                .param("eventName", "some name")
+                .param("eventDescription", "some description")
+                .param("eventLocal", "some local")
+        )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/event/2/show"));
+    }
+
+    @Test
+    public void testPostNewEventFormValidationFail() throws Exception {
+        EventCommand eventCommand = new EventCommand();
+        eventCommand.setEventId(2L);
+
+        when(eventService.saveEventCommand(any())).thenReturn(eventCommand);
+
+        mockMvc.perform(post("/event")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("eventId", ""))
+
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("event"))
+                .andExpect(view().name("event/eventForm"));
     }
 
     @Test
