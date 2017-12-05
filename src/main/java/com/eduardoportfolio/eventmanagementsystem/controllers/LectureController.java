@@ -8,7 +8,10 @@ import com.eduardoportfolio.eventmanagementsystem.services.LectureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by Eduardo on 23/11/17.
@@ -51,7 +54,13 @@ public class LectureController {
     }
 
     @PostMapping("/event/{eventId}/lecture")
-    public String saveOrUpdate(@ModelAttribute LectureCommand lectureCommand){
+    public String saveOrUpdate(@Valid @ModelAttribute ("lecture") LectureCommand lectureCommand, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            bindingResult.getAllErrors().forEach(objectError -> {
+                log.debug(objectError.toString());
+            });
+            return "lecture/lectureForm";
+        }
         LectureCommand savedCommand = lectureService.saveLectureCommand(lectureCommand);
         log.debug("Saved EventId: "+savedCommand.getEventId());
         log.debug("Saved LectureId: "+savedCommand.getLectureId());
