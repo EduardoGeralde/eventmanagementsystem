@@ -135,6 +135,11 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form method="post" th:object="${event}" th:action="@{/event/}">
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <p>Please Correct Errors Below</p>
+                </div>
+
                 <input type="hidden" th:field="*{eventId}">
                 <div class="pannel-group">
                     <div class="panel panel-primary">
@@ -152,31 +157,61 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-5 form-group">
-                                    <img src="../../static/images/imgExample.jpg" th:src="@{'/event/'+ ${event.eventId} + '/eventImage'}"
-                                         width="300" height="200"/>
-                                </div>
-                                <div class="col-md-3 form-group">
-                                    <label>Event Name:</label>
-                                    <input type="text" class="form-control" th:field="*{eventName}"/>
-                                </div>
                                 <div class="col-md-4 form-group">
+                                    <img src="../../static/images/imgExample.jpg" th:src="@{'/event/'+ ${event.eventId} + '/eventImage'}"
+                                         width="200" height="200"/>
+                                </div>
+                                <div class="col-md-4 form-group" th:class="${#fields.hasErrors('eventName')}
+                                ? 'col-md-4 form-group has-error' : 'col-md-4 form-group'">
+                                    <label>Event Name:</label>
+                                    <input type="text" class="form-control" th:field="*{eventName}" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('eventName')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('eventName')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                                <div class="col-md-4 form-group" th:class="${#fields.hasErrors('eventDescription')}
+                                ? 'col-md-4 form-group has-error' : 'col-md-4 form-group'">
                                     <label>Event Description:</label>
-                                    <textarea class="form-control" rows="7" th:field="*{eventDescription}"></textarea>
+                                    <textarea class="form-control" rows="7" th:field="*{eventDescription}" th:errorclass="has-error"></textarea>
+                                    <span class="help-block" th:if="${#fields.hasErrors('eventDescription')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('eventDescription')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 form-group">
+                                <div class="col-md-4 form-group" th:class="${#fields.hasErrors('eventDate')}
+                                ? 'col-md-4 form-group has-error' : 'col-md-4 form-group'">
                                     <label>Event Date:</label>
-                                    <input type="date" class="form-control" th:field="*{eventDate}"/>
+                                    <input type="date" class="form-control" th:field="*{eventDate}" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('eventDate')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('eventDate')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-3 form-group" th:class="${#fields.hasErrors('eventLocal')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
                                     <label>Event Local:</label>
-                                    <input type="text" class="form-control" th:field="*{eventLocal}"/>
+                                    <input type="text" class="form-control" th:field="*{eventLocal}" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('eventLocal')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('eventLocal')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                                 </div>
-                                <div class="col-md-5 form-group">
+                                <div class="col-md-5 form-group" th:class="${#fields.hasErrors('eventSite')}
+                                ? 'col-md-5 form-group has-error' : 'col-md-5 form-group'">
                                     <label>Event Site:</label>
-                                    <input type="text" class="form-control" th:field="*{eventSite}"/>
+                                    <input type="text" class="form-control" th:field="*{eventSite}" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('eventSite')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('eventSite')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                                 </div>
                             </div>
                         </div>

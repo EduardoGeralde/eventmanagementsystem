@@ -135,6 +135,11 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form method="post" th:object="${lecture}" th:action="@{'/event/'+${lecture.eventId}+'/lecture'}">
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <p>Please Correct Errors Below</p>
+                </div>
+
                 <input type="hidden" th:field="*{lectureId}"/>
                 <div class="pannel-group">
                     <div class="panel panel-primary">
@@ -144,14 +149,27 @@
                         <div class="panel-body">
                             <div class="row">
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-6 form-group" th:class="${#fields.hasErrors('lectureTitle')}
+                                ? 'col-md-6 form-group has-error' : 'col-md-6 form-group'">
                                     <label>Lecture Title:</label>
-                                    <input type="text" class="form-control" th:field="*{lectureTitle}">
+                                    <input type="text" class="form-control" th:field="*{lectureTitle}" th:errorclass="has-error">
+                                    <span class="help-block" th:if="${#fields.hasErrors('lectureTitle')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('lectureTitle')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                                 </div>
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-6 form-group" th:class="${#fields.hasErrors('lectureDescription')}
+                                ? 'col-md-6 form-group has-error' : 'col-md-6 form-group'">
                                     <label>Lecture Description</label>
-                                    <textarea rows="5" cols="60" type="text" class="form-control" th:field="*{lectureDescription}"></textarea>
+                                    <textarea rows="5" cols="60" type="text" class="form-control" th:field="*{lectureDescription}"
+                                              th:errorclass="has-error"></textarea>
+                                    <span class="help-block" th:if="${#fields.hasErrors('lectureDescription')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('lectureDescription')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                                 </div>
                             </div>
                         </div>
