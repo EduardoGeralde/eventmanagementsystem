@@ -104,11 +104,34 @@ public class LectureControllerTest {
         //then
         mockMvc.perform(post("/event/2/lecture")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("id", "")
-                .param("description", "some string"))
+                .param("lectureId", "")
+                .param("lectureDescription", "some string")
+                .param("lectureTitle", "some title"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/event/2/lecture/3/show"));
     }
+
+    @Test
+    public void testSaveOrUpdateWithFail() throws Exception {
+        //given
+        LectureCommand lectureCommand = new LectureCommand();
+        lectureCommand.setLectureId(3L);
+        lectureCommand.setEventId(2L);
+
+        //when
+        when(lectureService.saveLectureCommand(any())).thenReturn(lectureCommand);
+
+        //then
+        mockMvc.perform(post("/event/2/lecture")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("id", ""))
+
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("lecture"))
+                .andExpect(view().name("lecture/lectureForm"));
+    }
+
+
 
     @Test
     public void testDeleteLecture() throws Exception {
