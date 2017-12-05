@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 /**
  * Created by Eduardo on 23/10/17.
@@ -50,7 +53,13 @@ public class EventController {
     }
 
     @PostMapping("/event")
-    public String saveOrUpdate(@ModelAttribute EventCommand eventCommand){
+    public String saveOrUpdate(@Valid @ModelAttribute("event") EventCommand eventCommand, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            bindingResult.getAllErrors().forEach(objectError -> {
+                log.debug(objectError.toString());
+            });
+            return "event/eventForm";
+        }
         log.debug("EventController saveOrUpdate");
         EventCommand savedEvent = eventService.saveEventCommand(eventCommand);
         return "redirect:/event/"+savedEvent.getEventId()+"/show";
